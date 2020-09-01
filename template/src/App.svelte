@@ -9,7 +9,7 @@
 <Router {url}>
   <Route path=":filename" let:params>
     <Slideshow
-      sourceUrl={`/md/${params.filename}.md`}
+      sourceUrl={`md/${params.filename}.md`}
       filename={params.filename} />
   </Route>
 </Router>
