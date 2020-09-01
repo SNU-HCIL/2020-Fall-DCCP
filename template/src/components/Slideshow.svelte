@@ -42,7 +42,7 @@
   <title>{filename} | Digital Computer Concept and Practice | SNU HCIL</title>
 </svelte:head>
 
-<div class="container" bind:this={container} />
+<div class="container-fluid" bind:this={container} />
 
 <!--
   Mimic React's dynamic component rendering behavior
@@ -61,8 +61,7 @@
   :global(body) {
     padding: 0px;
   }
-  .container {
-    width: 100%;
+  .container-fluid {
     height: 100%;
   }
 </style>
