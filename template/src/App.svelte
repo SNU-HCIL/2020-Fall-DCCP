@@ -3,12 +3,13 @@
   import { Router, Route } from "svelte-routing";
   import Slideshow from "./components/Slideshow.svelte";
 
-  export let url: string = ''
-
+  export let url: string = "";
 </script>
 
-<Router url="{url}">
+<Router {url}>
   <Route path=":filename" let:params>
-    <Slideshow sourceUrl={`/md/${params.filename}.md`} />
+    <Slideshow
+      sourceUrl={`/md/${params.filename}.md`}
+      filename={params.filename} />
   </Route>
 </Router>

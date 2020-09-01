@@ -4,6 +4,7 @@
   import jQuery from "jquery"
   import PythonToolbar from "./PythonToolbar.svelte";
   export let sourceUrl: string;
+  export let filename: string;
 
   let container: HTMLElement;
 
@@ -36,6 +37,10 @@
     })
   })
 </script>
+
+<svelte:head>
+  <title>{filename} | Digital Computer Concept and Practice | SNU HCIL</title>
+</svelte:head>
 
 <div class="container" bind:this={container} />
 
