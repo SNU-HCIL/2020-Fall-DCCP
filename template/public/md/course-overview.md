@@ -68,6 +68,46 @@ Seoul National University
 * .red[Programming Homeworks (30%)], Midtern Exam (30%), Final Exam (25%), Term Project (10%), Class Participation (5%)
 
 * Absolute Grading (A:90, B:80, C:70, D:60)
+
+---
+
+# From Where You Are
+
+```python3
+# Python
+print("Hello, World!")
+```
+
+---
+
+# To Infinity and Beyond
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/91926560-779a0c00-ed12-11ea-8e78-78884d664709.png" width=800>]
+
+---
+
+# Academic Integrity (in Programming)
+
+* It is OK to discuss general ideas and overall strategies, but you should work on your own writing your programs.
+    * Help your classmates in a constructive way!
+
+
+* Rule 1: You must indicate any assistance you received.
+    * on your submission as part of comments at the beginning of your code 
+    
+    
+* Rule 2: You must not share actual program code with other students.
+
+
+* Rule 3: You must not look at solution sets or program code from other years.
+
+
+* Rule 4: You must be prepared to explain any program code you submit.
+
+
+
+https://cs.stanford.edu/people/eroberts/courses/cs106a/handouts/03-honor-code.pdf
+
 ---
 
 # Teaching Assistants
