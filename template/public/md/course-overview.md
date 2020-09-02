@@ -112,26 +112,26 @@ https://cs.stanford.edu/people/eroberts/courses/cs106a/handouts/03-honor-code.pd
 
 # Teaching Assistants
 
-.row[
-.col-6[
+.row.mt-3[
+.col-4[
 * 최길웅(lead)  
     <img src="http://hcil.snu.ac.kr/system/people/profile_images/37/show_box_retina/6bacf8ff8be25d97fea30939218f3baf801fad40.jpg" width="120px">
-    
+]
+.col-4[
     
 * 박석현  
     <img src="http://hcil.snu.ac.kr/system/people/profile_images/53/show_box_retina/ef6592af25ef7dd6bca51aade423c5a16169d43b.jpg" width="120px">
 
 ]
-.col-6[
+.col-4[
 * 전현  
     <img src="http://hcil.snu.ac.kr/system/people/profile_images/56/show_box_retina/000e3ed3bde1133c2735df52f2276f02cb48b349.jpg" width="120px">
     
-    
-* 이채은  
-    <img src="http://cglab.snu.ac.kr/resources/people/profile-chaeeunlee.jpg" width="120px">
 
 ]
 ]
+
+
 
 ---
 

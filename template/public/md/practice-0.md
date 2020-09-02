@@ -101,7 +101,7 @@ layout: true
 * 과제 채점을 원활하게 하기 위해 온라인 채점 사이트 운영
 * 다음 실습시간에 자세히 설명합니다
 
-<img src="https://user-images.githubusercontent.com/6987894/91629467-52e92000-ea04-11ea-814a-30fbed536ba8.png" width="100%" />
+<img src="https://user-images.githubusercontent.com/6987894/91629467-52e92000-ea04-11ea-814a-30fbed536ba8.png" width="80%" />
 
 ---
 
@@ -149,20 +149,20 @@ layout: true
 
 * Microsoft에서 만든 코드 에디터로 가볍고 편의 기능이 많음
 
-<img src="https://user-images.githubusercontent.com/6987894/91920591-84176800-ed04-11ea-85ae-9e96d8e1f7b3.png" width="100%" />
+<img src="https://user-images.githubusercontent.com/6987894/91920591-84176800-ed04-11ea-85ae-9e96d8e1f7b3.png" width="70%" />
 
 ---
 
 * 오픈소스 프로젝트 중 가장 기여자가 많은 프로젝트이기도 합니다
 
-<img src="https://user-images.githubusercontent.com/6987894/91920444-06535c80-ed04-11ea-8826-90185b6698ad.png" width="100%" />
+<img src="https://user-images.githubusercontent.com/6987894/91920444-06535c80-ed04-11ea-8826-90185b6698ad.png" width="80%" />
 
 ---
 
 
 * https://code.visualstudio.com/ 에서 설치합니다
 
-<img src="https://user-images.githubusercontent.com/6987894/91920951-4b2bc300-ed05-11ea-95ea-4701a120c612.png" width="100%" />
+<img src="https://user-images.githubusercontent.com/6987894/91920951-4b2bc300-ed05-11ea-95ea-4701a120c612.png" width="70%" />
 
 ---
 
@@ -225,7 +225,7 @@ layout: true
     * Google에 "download python"이라고 검색하면 바로 나옵니다
 * 강조되어 있는 3.8.5 버전 다운로드 버튼을 누릅니다
 
-<img src="https://user-images.githubusercontent.com/6987894/91921672-06089080-ed07-11ea-9dc6-ff559089f457.png" width="100%" />
+<img src="https://user-images.githubusercontent.com/6987894/91921672-06089080-ed07-11ea-9dc6-ff559089f457.png" width="60%" />
 
 ---
 
@@ -245,13 +245,13 @@ layout: true
 
 * `python`이라고 입력하고 엔터를 입력
 
-  <img src="https://user-images.githubusercontent.com/6987894/91922684-7a443380-ed09-11ea-9b2c-7a61a5d563f2.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/6987894/91922684-7a443380-ed09-11ea-9b2c-7a61a5d563f2.png" width="80%" />
   
 ---
 
 * 이렇게 뜨면 성공적으로 설치된 것입니다
 
-  <img src="https://user-images.githubusercontent.com/6987894/91922727-91832100-ed09-11ea-9423-810d7125cf19.png" width="100%" />
+  <img src="https://user-images.githubusercontent.com/6987894/91922727-91832100-ed09-11ea-9423-810d7125cf19.png" width="80%" />
 
 ---
 
@@ -282,7 +282,7 @@ layout: true
 * 맥 terminal을 실행합니다
     * spotlight search에 *terminal*이라고 검색하면 나옵니다
     
-<img src="https://user-images.githubusercontent.com/38465539/91925561-386abb80-ed10-11ea-9962-d9baa3cd486b.jpeg" width="70%"/>
+<img src="https://user-images.githubusercontent.com/38465539/91925561-386abb80-ed10-11ea-9962-d9baa3cd486b.jpeg" width="50%"/>
 
 ---
 
@@ -361,4 +361,32 @@ layout: true
 * 결과가 정상적으로 출력되는지 확인합니다
 
   <img src="https://user-images.githubusercontent.com/6987894/91924030-af9e5080-ed0c-11ea-96f9-d982e34cf3c8.png"/>
-  
+
+---
+
+template: base
+layout: true
+
+.mb-3[
+# 개발 환경 설정
+]
+
+### Python 익스텐션 설치하기
+
+---
+
+* 더 많은 편의기능을 이용하기 위해선 python 확장 프로그램을 설치해야 합니다
+* 왼쪽의 확장(extension) 탭에서 python을 검색해서 설치합니다
+
+  <img src="https://user-images.githubusercontent.com/6987894/91934178-a2419000-ed25-11ea-80eb-1802e31c74cc.png" height="300px" />
+
+---
+
+* `F1` 혹은 `Ctrl(Cmd)+Shift+P` 키를 눌러 커맨드 창을 띄우고, `Python: select interpreter` 옵션에서 설치된 Python 3.8을 선택합니다.
+
+  <img src="https://user-images.githubusercontent.com/6987894/91934307-05332700-ed26-11ea-9830-30e2ff1ab1ee.png" width="100%" />
+
+<br>
+
+* 오늘은 설치만 하면 됩니다
+* 이 확장 프로그램의 활용법이나 다른 편의기능들은 나중에 다시 보겠습니다
