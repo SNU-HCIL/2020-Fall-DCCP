@@ -97,14 +97,14 @@ Seoul National University
 .col-8[
 
 * All data in a computer is stored in sequences of 0s and 1s
-* Byte: just enough memory to store letter or small number
+* Byte: just enough memory to store a letter or a small number
     * Divided into eight bits
     * Bit: electrical component that can hold positive or negative charge, like on/off switch
     * The on/off pattern of bits in a byte represents data stored in the byte
     
     
-* The decimal prefixes kilo, mega, giga, tera, etc., are powers of 10<sup>3</sup> = 1000. 
-* The binary prefixes kibi, mebi, gibi, tebi, etc. are powers of 2<sup>10</sup> = 1024. 
+* The decimal prefixes `kilo`, `mega`, `giga`, `tera`, etc., are powers of 10<sup>3</sup> = 1000. 
+* The binary prefixes `kibi`, `mebi`, `gibi`, `tebi`, etc. are powers of 2<sup>10</sup> = 1024. 
 * In casual usage, the two corresponding prefixes are considered equivalent.
    
 ]
@@ -118,21 +118,198 @@ https://en.wikipedia.org/wiki/Byte
 
 # Storing Numbers 
 
-* Bit represents two values, 0 and 1
+* Bit (BInary digiT) represents one of the two values, 0 and 1
 * Computers use binary numbering system
     * Position of digit j is assigned the value 2<sup>j-1</sup>
     * To determine value of binary integer, sum position values of the 1s
-* Byte size limits are 0 and 255
+* Byte size (8 bits) limits are 0 and 255
     * 0 = all bits off; 255 = all bits on
     * To store larger numbers, use several bytes
 
 
 * To store negative integers and real numbers, computers use binary numbering and encoding schemes
     * Negative integers encoded using two’s complement
-    * Real numbers encoded using floating-point notation
+    * Real numbers encoded using floating-point notation (double precision in Python)
+       
+.center[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/618px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>]
     
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Float_example.svg/1180px-Float_example.svg.png" height=70>  
-        *IEEE Standard for Floating-Point Arithmetic (IEEE 754)*
+.center[IEEE Standard for Floating-Point Arithmetic (IEEE 754)]
+
+---
+
+# Storing Integers (Signed Number Representation)
+
+* Sign-magnitude Representation
+    
+     
+* 1's Complement Representation
+    
+    
+* 2's Complement Representation
+        
+---
+
+# Sign-magnitude Representation
+
+<img src="https://user-images.githubusercontent.com/39995503/92318238-353f3a80-f044-11ea-94e7-5a7ccaa26a44.png" height=150>
+    
+* Early computers used this represenation; e.g., IBM7090 (1959)
+
+
+* two ways to represent zero, `00000000 (+0)` and `10000000 (-0)`
+* addition and subtraction have to be implemented differently depending on the sign bit
+* comparison requires sign bit inspection
+* the minimum negative number is `-127`
+
+---
+
+# 1's Complement Representation
+
+* 1's complement (c) of a binary number (b): b + c = 1
+
+
+* Use 1's complement to represent a negative number
+
+
+* Many early computers used ones' complement notation; e.g., CDC 6600 (1965), the LINC, the PDP-1, and the UNIVAC 1107 
+
+* Positive numbers are represented in the same way as sign-magnitude representation
+* Negative numbers are represented by taking 1's complement of the unsigned positive number
+    * leftmost bit continues to function as a sign bit  
+    <img src="https://user-images.githubusercontent.com/39995503/92318520-7afe0200-f048-11ea-8425-59d00fac8b38.png" height=100>
+
+---
+
+# 1's Complement Representation        
+
+
+```
+          binary    decimal
+        11111100     −3
+     +  11111011     −4
+     ───────────     ──
+      1 11110111      0   ← Not the correct answer
+               1     +1   ← Add end-around carry
+     ───────────     ──
+        11111000     −7   ← Correct answer
+```
+
+* two ways to represent zero, `00000000 (+0)` and `11111111 (-0)`
+* the minimum negative number is `-127`
+
+---
+
+# 2's Complement Representation
+
+* 2's complement (c) of a binary number (b): b + c = 2
+    * 2's complement: (1's complement) + 1
+
+
+* Use 2's complement to represent a negative number
+
+
+* Most commonly used computer representation for integers
+
+
+* Positive numbers are represented in the same way as sign-magnitude representation
+* Negative numbers are represented by taking 2's complement of the unsigned positive number
+    * leftmost bit continues to function as a sign bit  
+    <img src="https://user-images.githubusercontent.com/39995503/92318532-8f41ff00-f048-11ea-877c-06c21eb04b7f.png" height=100>
+
+---
+# 2's Complement Representation
+
+```
+          binary    decimal
+        11111101     −3
+     +  11111100     −4
+     ───────────     ──
+      1 11111001     −7   ← Correct answer
+                          ← Ignore end-around carry
+
+```
+
+
+* only one way to represent zero, `00000000`
+* the minimum negative number is `-128`
+
+---
+# Python's Integer Representaion
+
+* All integers are implemented as “long” integer objects of .red[arbitrary] size.
+
+
+* In languages like C/C++, the precision of integers is limited to 64-bit
+* but Python has built-in support for .red[arbitrary-precision] integers.
+
+* PyLongObject: a subtype of PyObject represents a Python integer object.
+
+```c
+struct {
+    ssize_t ob_refcnt;
+    struct _typeobject *ob_type;
+    ssize_t ob_size; 
+    uint32_t ob_digit[1];
+};
+```
+
+* Example: source: <a href="https://rushter.com/blog/python-integer-implementation/" target="_blank"> https://rushter.com/blog/python-integer-implementation/</a>
+
+<span style="font-family:courier;font-size:0.9em">
+123456789101112131415 = 437976919∗2<sup>30\*0</sup> + 87719511\*2<sup>30\*1</sup> + 107\*2<sup>30\*2</sup>
+</span>
+
+```
+ob_size    3
+ob_digit   437976919 | 87719511 | 107
+```
+
+
+---
+# Floating-point Representation for Real Numbers
+```
+0.1101 x 2^5 = 1.1010 x 2^4 
+             = 11.010 x 2^3
+             ≈ 0.0110 x 2^6
+             ≈ 0.0011 x 2^7
+```
+
+---
+# IEEE 754 Standard Formats
+
+
+* Single Precision  
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Float_example.svg/590px-Float_example.svg.png" height=60>
+
+* Double Precision (Python)  
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/618px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>
+* The real value of a single precision folating-point number is
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5858d28deea4237a7c1320f7e649fb104aecb0e5">  
+which yields  
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/15f92e12d6d0a7c02be4f12c83007940c432ba87">
+
+source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
+
+---
+# IEEE 754 Standard Formats
+
+  
+<img src="https://user-images.githubusercontent.com/39995503/92327384-4152e880-f094-11ea-9e47-4e2b547504fb.png" width=600>
+
+
+
+* Sign bit: The sign is stored in the first bit of the word.
+* Normalized significand
+   * The first bit of the true significand is always 1 and need not be stored in the significand field. 
+   * (-1)^s x .red[1].bbb…b x 2^±E
+* Biased exponent
+    * 128 is added to the true exponent to be stored in the exponent filed. 
+    * 0 ~ 255    ->   -128 ~ +127
+
+---
+# Expressible Numbers in 32-bit Formats
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/92327235-259b1280-f093-11ea-9a1f-9b2b62f6ac04.png" width=700>]
 
 ---
 
@@ -144,10 +321,66 @@ https://en.wikipedia.org/wiki/Byte
 * Characters are converted to numeric code, numeric code stored in memory
     * Most important coding scheme is ASCII
     * ASCII is limited: defines codes for only 128 characters
-    * Unicode coding scheme becoming standard
-        * Compatible with ASCII
-        * Can represent characters for other languages
-        
+    * Unicode coding scheme became standard
+       * Compatible with ASCII
+       * Can represent characters for other languages
+ 
+---
+
+# ASCII Character Set
+
+* US-ASCII
+* American Standard Code for Information Interchange
+* Character encoding standard for electronic communication
+
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/92238226-b3d89280-eef3-11ea-9976-a06837ba00f2.png" width=600>]
+
+.center[https://en.wikipedia.org/wiki/ASCII]
+ 
+---
+
+# UTF-8
+
+* Unicode (or Universal Coded Character Set) Transformation Format – 8-bit
+* Used by approximately 95% of all web pages
+* Encode all 1,112,064 valid character code points in Unicode using one to four byte (8-bit) code units
+    * If the code point is < 128, it’s represented by the corresponding byte value.
+    * If the code point is >= 128, it’s turned into a sequence of two, three, or four bytes, where each byte of the sequence is between 128 and 255.
+* Backward compatibility with ASCII
+    * the first 128 characters of Unicode are encoded using a single byte with the same binary value as ASCII
+   
+
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/92293528-3cd8e380-ef5f-11ea-8c5c-241ff54e083e.png" width=500>]
+
+---
+
+# Python's Unicode Support
+
+* The default encoding for Python source code is .red[UTF-8]
+* Any string created using "unicode rocks!", 'unicode rocks!', or the triple-quoted string syntax is stored as Unicode
+* Python 3 also supports using Unicode characters in identifiers
+
+```python3
+>>> ord("한")    # convert a one-character Unicode string to a code point value
+54620
+>>> chr(54620)  # assemble strings using chr()
+'한'
+>>> 합계 = 10
+>>> 합계 = 합계+20
+>>> print(합계)
+10
+>>> 
+```
+
+* Python interpreter looks for `coding: name` or `coding=name` in the comment
+
+```python3
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
+```               
+               
 ---
 
 # How a Program Works 
@@ -160,9 +393,9 @@ https://en.wikipedia.org/wiki/Byte
 
 * CPU executes program in cycle:
 
-    1. **Fetch**: read the next instruction from memory into CPU
-    2. **Decode**: CPU decodes fetched instruction to determine which operation to perform
-    3. **Execute**: perform the operation
+   1. .red[Fetch]: read the next instruction from memory into CPU
+   2. .red[Decode]: CPU decodes fetched instruction to determine which operation to perform
+   3. .red[Execute]: perform the operation
 
    
 ]
@@ -192,6 +425,31 @@ https://computersciencewiki.org/
 
 
 * To solve these issue an abstraction was required
+
+---
+
+# "Hello, World!" in Assembly Language 
+
+* x86 assembly language (DOS in MASM style assembly)
+
+```assembler
+.model small
+.stack 100h
+
+.data
+msg	db	'Hello world!$'
+
+.code
+start:
+	mov	ah, 09h   ; Display the message
+	lea	dx, msg
+	int	21h
+	mov	ax, 4C00h  ; Terminate the executable
+	int	21h
+
+end start
+```
+source:[https://en.wikipedia.org/wiki/X86_assembly_language]
 
 ---
 
@@ -325,10 +583,16 @@ the number of search engine results for queries containing the name of the langu
 
 # Programming Languages
 
-* How to print "Hello World!" in different languages
+* How to print "Hello, World!" in different languages
 
 .row[
 .col-5[
+
+```python
+# Python
+print("Hello, World!")
+```
+
 ```c
 /* C */
 #include <stdio.h>
@@ -339,10 +603,7 @@ int main()
 }
 ```
 
-```python
-# Python
-print("Hello, World!")
-```
+
 
 ]
 .col-7[
@@ -372,17 +633,49 @@ class HelloWorld {
 ]
 
 ---
+# Turing Completeness
+
+* A programming language is .red[Turing complete] if it can be used to simulate a Universal Turing Machine 
+    * a hypothetical computing device with an unbounded memory (tape) on which one could write 0's and 1's, and some very premitive instructions for moving, reading, and writing to the memory.
+    * fixed-program computer vs. .red[stored-program computer]
+
+
+* If a function is .red[computable], a Turing Machine can be programmed to compute it. (Church-Turing Thesis)
+    * Turing discovered in the 1930’s that there are problems unsolvable by any algorithm -> uncomputable
+    * Halting problem: 
+        * Given an arbitrary algorithm and its input, will that algorithm eventually halt, or will it continue forever in an “infinite loop?”
+
+
+
+* All modern programming languages are Turing complete.
+    * Anything that can be programmed in one programming language (e.g., C++) can be programmined in any other programming language (e.g., Python).
+    
+---
+
+# Programming Lanugage
+
+* Each progamming language has:
+   * primitive constrcts: literals (numbers andd strings), operators
+   * .red[syntax]: defines which strings of characters and symbos are well-formed
+       * syntax error: He cats loves.
+   * .red[static semantics]: define which syntactically valid strings have a meaning
+       * static semantics error: He run quickly.
+   * .red[semantics]: associates a meaning with each syntactically correct string that has no static semantic errors
+       * If a program has no syntactic erros and no static semantic erros, it has semantics.
+       * sematics error: He runs quickly. (But I wanted to write "She runs quickly.")
+
+---
 
 # Compilers and Interpreters
 
 * Programs written in high-level languages must be translated into machine language to be executed
 
 
-* **Compiler**: translates high-level language program into separate machine language program
+* .red[Compiler]: translates high-level language program into separate machine language program
     * Machine language program can be executed at any time
     
     
-* **Interpreter**: translates and executes instructions in high-level language program
+* .red[Interpreter]: translates and executes instructions in high-level language program
     * Used by Python language
     * Interprets one instruction at a time
     * without requiring codes previously to have been compiled into a machine language program
@@ -393,8 +686,8 @@ class HelloWorld {
 # Using Python
 
 * Python Interpreter
-    * Translate source code into some efficient intermediate representation and immediately execute this
-    * **souce code(.py)** -> **byte code(.pyc)** -> **PVM(Python Virual Machine; Python Interpreter)**
+   * Translate source code into some efficient intermediate representation and immediately execute this
+   * .red[souce code(.py)] -> .red[byte code(.pyc)] -> .red[PVM(Python Virual Machine; Python Interpreter)]
  
  
 * Python must be installed and configured prior to use
@@ -402,8 +695,8 @@ class HelloWorld {
 
 
 * Python interpreter can be used in two modes:
-    * **Interactive mode**: enter statements on keyboard
-    * **Script mode**: save statements in Python script
+    * .red[Interactive mode]: enter statements on keyboard
+    * .red[Script mode]: save statements in Python script
 
 ---
 
@@ -429,8 +722,9 @@ class HelloWorld {
     * To run the file, or script, type the following at the operating system command line:
     
     
-            python filename 
-	
+```
+python filename 
+```
 ---
 
 # IDE 
@@ -445,6 +739,22 @@ class HelloWorld {
     * Has a built-in text editor with features designed to help write Python programs
 
     <img src="https://user-images.githubusercontent.com/39995503/91443546-700bda80-e8ae-11ea-8c89-5b7683d13c8e.png" width=700>
+
+---
+
+# Simple Output and Input in Python
+
+```python
+print("My name is Python.")
+
+name = input("What is your name? (type in your name here and hit 'enter': ")
+
+print("Your name is", name)
+
+age = input("How old are you? (type in your age here and hit 'enter': ")
+
+print("You are ", age, "years old.")
+```
 
 ---
 
