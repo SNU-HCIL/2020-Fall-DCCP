@@ -697,6 +697,47 @@ class HelloWorld {
 * Python interpreter can be used in two modes:
     * .red[Interactive mode]: enter statements on keyboard
     * .red[Script mode]: save statements in Python script
+    
+    
+---
+
+# Why Python
+
+* General purpose , High level, Scripting Language
+
+
+* First appeared 1991 , invented by Guido van Rossum
+
+
+* Easy to use, easy to learn
+
+
+* Widely used as
+    * Scientific libraries
+    * Web Frameworks
+    * Backend Frameworks
+    * UI Frameworks
+    * Graphic Frameworks
+    * Data Mining Frameworks
+    * And many others…
+
+---
+
+# Why Python: Advantages vs Disadvantages
+
+* Advantages
+    * Fast prototype testing
+    * Minimal development effort
+    * High readability
+
+
+* Disadvantages
+    * As a scripting language, it requires a interpreter
+    * Performance might be an issue (memory, computation)
+    * Weak typing might be harder to debug (weak satic semantic checking)
+        * Not optimal for programs that have high reliability constraints
+        * Not optimal for programs that are built and maintained by many people or over a long period of time    
+
 
 ---
 

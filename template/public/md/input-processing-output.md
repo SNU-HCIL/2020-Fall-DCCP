@@ -372,8 +372,6 @@ print('Hello,', first_name, last_name)
 ---
 # Reading Input from Keyboard
 * Built-in functions convert between data types
-
-
 * `int(item)` converts item to an `int`
 * `float(item)` converts item to a `float`
 * Nested function call: 
@@ -387,7 +385,6 @@ print('Hello,', first_name, last_name)
 name = input('What is your name? ')
 age = int(input('What is your age? '))
 income = float(input('What is your income? '))
-
 # Display the data.
 print('Here is the data you entered:')
 print('Name:', name)
@@ -634,16 +631,14 @@ print(r'The path is C:\temp\data.')
 12345.7
 >>> print('The number is', format(1.234567, '.2f'))
 The number is 1.23
->>> print(format(0.5, '%')) 
-50.000000%
->>> print(format(0.5, '.0%')) 
-50%
 ```
 
 ---
 # Formatting Numbers
 
 ```python3
+>>> print(format(0.5, '.0%')) 
+50%
 >>> print(format(0.5, '%')) 
 50.000000%
 >>> print(format(0.5, '.0%')) 
@@ -680,7 +675,7 @@ https://docs.python.org/3.3/library/string.html#format-specification-mini-langua
 * The default format_spec is an empty string which usually gives the same effect as calling `str(value)`.
 
 ---
-# Fortmat examples
+# Format examples
 
 ```python3
 >>> '{0}, {1}, {2}'.format('a', 'b', 'c')
@@ -695,6 +690,11 @@ https://docs.python.org/3.3/library/string.html#format-specification-mini-langua
 'left aligned                  '
 >>> '{:>30}'.format('right aligned')
 '                 right aligned'
+```
+---
+# Format examples
+
+```python3
 >>> '{:^30}'.format('centered')
 '           centered           '
 >>> '{:*^30}'.format('centered')  # use '*' as a fill char
