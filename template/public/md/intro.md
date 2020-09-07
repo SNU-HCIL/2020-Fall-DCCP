@@ -738,7 +738,7 @@ python filename
     * Runs in the interactive mode
     * Has a built-in text editor with features designed to help write Python programs
 
-    <img src="https://user-images.githubusercontent.com/39995503/91443546-700bda80-e8ae-11ea-8c89-5b7683d13c8e.png" width=700>
+    <img src="https://user-images.githubusercontent.com/38465539/92340720-72640500-f0f6-11ea-9b4b-73d8bc56c53a.png" width="80%">
 
 ---
 
