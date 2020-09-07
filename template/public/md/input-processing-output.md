@@ -25,9 +25,9 @@ Seoul National University
 * Program development cycle:
     * Design the program
     * Write the code
-    * Correct syntax errors
+    * Correct syntax errors and static sematics errors
     * Test the program
-    * Correct logic errors
+    * Correct logic errors (i.e., sematics errors)
 
 --
 
@@ -41,6 +41,36 @@ Seoul National University
    * Ask questions about their .red[goals] and .red[tasks]
    * Create one or more software requirements (program details)
     
+
+---
+# Problems and Algorithms
+
+* In many domains there are key general problems (or tasks) that ask for .red[output] with specific properties when given valid .red[input].
+
+* The first step is to .red[precisely state the problem], using the appropriate .red[structures] to specify the input and the desired output.
+
+* We then solve the general problem by .red[specifying the steps of a procedure] that takes a valid input and produces the desired output.  This procedure is called an .red[algorithm]. 
+
+---
+# Program Implements Algorithm
+
+ 
+* An .red[algorithm] is a finite set of precise instructions for performing a computation or for solving a problem.
+
+* The foundation of computer programming.
+* Most generally, an algorithm just means a .red[definite procedure] for performing some sort of task.
+* A computer program is simply a .red[description of an algorithm in a language] precise enough for a computer to understand, requiring only operations the computer already knows how to do.
+* We say that a program .red[implements] its algorithm.
+
+  
+.right[<img src="https://www.researchgate.net/profile/Jorge_Fernandez25/publication/326357560/figure/fig13/AS:647700987011079@1531435357496/Abu-Jafar-Muhammad-ibn-Musa-al-Khwarizmi.png" width=100>]
+
+.right[
+Abu Ja’far Muhammed ibin Musa .red[Al-Khowarizmi]  
+"Alrorithmi"
+(780-850)
+]
+
 ---
 
 # Designing a Program
@@ -55,13 +85,14 @@ Seoul National University
 
 
 * .red[Pseudocode]
-    * Fake code
-    * Informal language that has no syntax rule 
-    * Not meant to be compiled or executed
-    * Used to create a model program
-    * No need to worry about syntax errors
+   * Fake code
+   * Informal language that has no syntax rule 
+   * Not meant to be compiled or executed
+   * Used to create a model program
+   * No need to worry about syntax errors
    * Focus on program’s .red[high-level design]
-    * Can be translated directly into actual code in any programming language
+   * Helps us analyze the time required to solve a problem using an algorithm, independent of the actual programming language used to implement algorithm 
+   * Can be translated directly into actual code in any programming language
 
 ---
 <img src="https://user-images.githubusercontent.com/39995503/91539385-2f669c80-e954-11ea-91d0-a25b216a895d.png" width=600>
@@ -119,10 +150,11 @@ print("This is my second Python output!") # string: argument
 * .red[String]: sequence of characters that is used as data
 * .red[String literal]: string that appears in actual code of a program
     * Must be enclosed in single (`'`) or double (`"`) quote marks
-    * String literal can be enclosed in triple quotes (`'''` or `"""`)
-        * Enclosed string can contain both single and double quotes and can have multiple lines
+* String literal can be enclosed in triple quotes (`'''` or `"""`)
+   * Enclosed string can contain both single and double quotes and can have multiple lines
+   * .red[Multiline strings] with triple quotes
         
-```python
+```python3
 # exmaple code to show how to use the print function
 print('''Title: "The Waste Land"''')
 print('BY T. S. ELIOT')
@@ -175,6 +207,27 @@ print(firstName, middleName, lastName)
 print("This is my first Python output!") # end-line comment
 print("This is my second Python output!") # second statement
 ```
+---
+# Multiline String as Comments
+
+* Python ignore string literals that are not assigned to a variable
+* multiline string literals as multiline comment
+
+* Example: relu function in activations.py (Keras project)
+```python3
+def relu(x, alpha=0., max_value=None):
+    """Rectified Linear Unit.
+    # Arguments
+        x: Input tensor.
+        alpha: Slope of the negative part. Defaults to zero.
+        max_value: Maximum value for the output.
+    # Returns
+        The (leaky) rectified linear unit activation: `x` if `x > 0`,
+        `alpha * x` if `x < 0`. If `max_value` is defined, the result
+        is truncated to this value.
+    """
+    return K.relu(x, alpha=alpha, max_value=max_value)
+```
 
 ---
 # Variables
@@ -183,6 +236,8 @@ print("This is my second Python output!") # second statement
     * Used to access and manipulate data stored in memory
     * A variable references the value it represents
 
+
+* In Python, .red[a variable is just a name], nothing more!
 
 * **Assignment** statement: used to .red[**create a variable**] and make it .red[**reference**] data
 * General format is `variable = expression`
@@ -246,8 +301,8 @@ new_age = age # create another vaiable that also references the same object
 
 
 * A variable can refer to item of any type
-    * Variable that has been assigned to one type can be reassigned to another type
-    * .red[Dynamic Binding] vs. .red[Static Binding]
+   * Variable that has been assigned to one type can be reassigned to another type
+   * .red[Dynamic Binding] vs. .red[Static Binding]
     
 <img src="https://user-images.githubusercontent.com/39995503/91630838-de1be300-ea0f-11ea-88fc-760ece6f61c8.png" height=250>
 --
@@ -282,9 +337,11 @@ print('The data type of "year":\n', type(year))
    * .red[No decimal point] considered `int`, otherwise, considered `float`
  
  
-* Some operations behave differently depending on data type
+* Some operators behave differently depending on data type (`+` is overloaded)
     * `1+2`
     * `'a'+'b'`
+    * `3 * 4`
+    * `3 * 'a'`
 
 ---
 
@@ -355,14 +412,29 @@ print('Income:', income)
 
 ---
 
-# Performing Calculations
+# Math Operators in Python
 
-* Python math operators  
-    <img src="https://user-images.githubusercontent.com/39995503/91632485-fbef4500-ea1b-11ea-8aa0-3b86b21452ba.png" width=300>
+.row[
+.col-8[
+* Three numeric types: 
+    * `int` for integers 
+    * `float` for floating point numbers
+    * `complex` for complex numbers
 
-* Operators in Python  
-    <img src="https://user-images.githubusercontent.com/39995503/91682373-527b9100-eb8c-11ea-995f-1a1d9d500ccc.png" width=700>
 
+* Integers
+   * .red[unlimited] precision
+   * Booleans (`bool`) are a subtype of integers
+
+
+* Floating point numbers are usually implemented using `double` in C
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/1920px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>
+]
+.col-4[
+<img src="https://user-images.githubusercontent.com/39995503/92233067-918e4700-eeea-11ea-9ea0-c24c3dc238b3.png" width=300>
+]
+]
 
 * Mathematical functions in the `math` module
     * https://docs.python.org/3/library/math.html
@@ -373,6 +445,10 @@ print('Income:', income)
 
 
 <iframe src="http://brython.info/console.html" width="800" height="400"></iframe>
+
+
+* Operators in Python  
+    <img src="https://user-images.githubusercontent.com/39995503/91682373-527b9100-eb8c-11ea-995f-1a1d9d500ccc.png" width=700>
 
 ---
   
