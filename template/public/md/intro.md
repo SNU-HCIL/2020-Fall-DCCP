@@ -187,10 +187,10 @@ https://en.wikipedia.org/wiki/Byte
           binary    decimal
         11111100     −3
      +  11111011     −4
-     ───────────     ──
-      1 11110111      0   ← Not the correct answer
+     ─────────     ──
+      1 11110111     −8   ← Not the correct answer
                1     +1   ← Add end-around carry
-     ───────────     ──
+     ─────────     ──
         11111000     −7   ← Correct answer
 ```
 
@@ -223,7 +223,7 @@ https://en.wikipedia.org/wiki/Byte
           binary    decimal
         11111101     −3
      +  11111100     −4
-     ───────────     ──
+     ────────      ──
       1 11111001     −7   ← Correct answer
                           ← Ignore end-around carry
 
@@ -281,12 +281,14 @@ ob_digit   437976919 | 87719511 | 107
 * Single Precision  
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Float_example.svg/590px-Float_example.svg.png" height=60>
 
-* Double Precision (Python)  
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/618px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>
 * The real value of a single precision folating-point number is
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5858d28deea4237a7c1320f7e649fb104aecb0e5">  
 which yields  
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/15f92e12d6d0a7c02be4f12c83007940c432ba87">
+
+
+* Double Precision (Python)  
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/618px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>
 
 source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 
@@ -294,8 +296,7 @@ source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 # IEEE 754 Standard Formats
 
   
-<img src="https://user-images.githubusercontent.com/39995503/92327384-4152e880-f094-11ea-9e47-4e2b547504fb.png" width=600>
-
+<img src="https://user-images.githubusercontent.com/39995503/92426721-9c382d00-f1c5-11ea-841e-055e90b8792f.png" width=500>
 
 
 * Sign bit: The sign is stored in the first bit of the word.
@@ -303,13 +304,45 @@ source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
    * The first bit of the true significand is always 1 and need not be stored in the significand field. 
    * (-1)^s x .red[1].bbb…b x 2^±E
 * Biased exponent
-    * 128 is added to the true exponent to be stored in the exponent filed. 
-    * 0 ~ 255    ->   -128 ~ +127
+   * 127 is added to the true exponent to be stored in the exponent filed. 
+   * 0 ~ 255    ->   -127 ~ +128
+   * Exponents range from .red[−126 to +127] because exponents of −127 (all 0s) and +128 (all 1s) are reserved for special numbers
 
 ---
-# Expressible Numbers in 32-bit Formats
+# Expressible (Normalized) Numbers in 32-bit Formats
 
-.center[<img src="https://user-images.githubusercontent.com/39995503/92327235-259b1280-f093-11ea-9a1f-9b2b62f6ac04.png" width=700>]
+.center[<img src="https://user-images.githubusercontent.com/39995503/92390002-12507b80-f155-11ea-9646-cd34aea1894f.png" width=700>]
+
+---
+# Five Groups of Floating Point Numbers
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/92390825-95260600-f156-11ea-9aa8-f3ec1695bcb1.png" width=700>]
+
+* Extreme exponent values (0 and 255): used to indicate special values
+* NaN(Not a Number) is used to signal exception conditions
+
+---
+```
+(largest normal number)
+0 11111110 111111111111111111111112 = 2^127 × (2 − 2^−23) 
+≈ 3.4028234664 × 10^38
+
+(smallest positive normal number)
+0 00000001 000000000000000000000002 = 2^−126 ≈ 1.1754943508 × 10^−38
+                                                   
+(one)
+0 01111111 000000000000000000000002 = 1 
+
+(largest subnormal number)
+0 00000000 111111111111111111111112 = 2^−126 × (1 − 2^−23) 
+≈ 1.1754942107 ×10−38
+
+(smallest positive subnormal number)
+0 00000000 000000000000000000000012 = 2^−126 × 2^−23 = 2^−149 
+≈ 1.4012984643 × 10−45                                                   
+```
+
+Source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 
 ---
 
@@ -370,7 +403,7 @@ source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 >>> 합계 = 10
 >>> 합계 = 합계+20
 >>> print(합계)
-10
+30
 >>> 
 ```
 
@@ -413,9 +446,9 @@ https://computersciencewiki.org/
 * Impractical for people to write in machine language (binary numbers)
 
 
-* **Assembly language**: uses short words (mnemonics) for instructions instead of binary numbers
+* .red[Assembly language]: uses short words (mnemonics) for instructions instead of binary numbers
     * Easier for programmers to work with
-* **Assembler**: translates assembly language to machine language for execution by CPU
+* .red[Assembler]: translates assembly language to machine language for execution by CPU
 
 
 * Low level programming had many issues
@@ -428,7 +461,7 @@ https://computersciencewiki.org/
 
 ---
 
-# "Hello, World!" in Assembly Language 
+# "Hello, world!" in Assembly Language 
 
 * x86 assembly language (DOS in MASM style assembly)
 
@@ -437,7 +470,7 @@ https://computersciencewiki.org/
 .stack 100h
 
 .data
-msg	db	'Hello world!$'
+msg	db	'Hello, world!$'
 
 .code
 start:
@@ -477,18 +510,18 @@ source:[https://en.wikipedia.org/wiki/X86_assembly_language]
 # High-Level Programming Paradigms 
 
 * Control-oriented Programming (before mid 80’s)
-    * Real world problem -> a set of **functions**
-    * Data and functions are separately treated
-    * Fortran, Cobol, PL/1, Pascal, C (1972, Bell Lab)
+   * Real world problem -> a set of .red[functions]
+   * Data and functions are separately treated
+   * Fortran, Cobol, PL/1, Pascal, C (1972, Bell Lab)
     
     
 * Object-oriented Programming (after mid 80’s)
-    * Real world problem -> a set of **classes**
-    * Data and functions are encapsulated inside classes
-    * C++ (1982, Bell Lab)
-    * Python (1991)
-    * Java (1994)
-    * and most Script Languages (Ruby, PHP, R,…)
+   * Real world problem -> a set of .red[classes]
+   * Data and functions are encapsulated inside classes
+   * C++ (1982, Bell Lab)
+   * Python (1991)
+   * Java (1994)
+   * and most Script Languages (Ruby, PHP, R,…)
     
 ---
 
@@ -636,19 +669,21 @@ class HelloWorld {
 # Turing Completeness
 
 * A programming language is .red[Turing complete] if it can be used to simulate a Universal Turing Machine 
-    * a hypothetical computing device with an unbounded memory (tape) on which one could write 0's and 1's, and some very premitive instructions for moving, reading, and writing to the memory.
-    * fixed-program computer vs. .red[stored-program computer]
-
-
-* If a function is .red[computable], a Turing Machine can be programmed to compute it. (Church-Turing Thesis)
-    * Turing discovered in the 1930’s that there are problems unsolvable by any algorithm -> uncomputable
-    * Halting problem: 
-        * Given an arbitrary algorithm and its input, will that algorithm eventually halt, or will it continue forever in an “infinite loop?”
-
+   * a hypothetical computing device with an unbounded memory (tape) on which one could write 0's and 1's, and some very premitive instructions for moving, reading, and writing to the memory.
+   * fixed-program computer vs. .red[stored-program computer]
 
 
 * All modern programming languages are Turing complete.
     * Anything that can be programmed in one programming language (e.g., C++) can be programmined in any other programming language (e.g., Python).
+    
+    
+* If a function is .red[computable], a Turing Machine can be programmed to compute it. (Church-Turing Thesis)
+   * Turing discovered in the 1930’s that there are problems unsolvable by any algorithm -> .red[uncomputable]
+   * .red[Halting problem]: 
+        * Given an arbitrary algorithm and its input, will that algorithm eventually halt, or will it continue forever in an infinite loop?
+
+
+
     
 ---
 
@@ -680,25 +715,6 @@ class HelloWorld {
     * Interprets one instruction at a time
     * without requiring codes previously to have been compiled into a machine language program
 
-
----
-
-# Using Python
-
-* Python Interpreter
-   * Translate source code into some efficient intermediate representation and immediately execute this
-   * .red[souce code(.py)] -> .red[byte code(.pyc)] -> .red[PVM(Python Virual Machine; Python Interpreter)]
- 
- 
-* Python must be installed and configured prior to use
-    * One of the items installed is the Python interpreter
-
-
-* Python interpreter can be used in two modes:
-    * .red[Interactive mode]: enter statements on keyboard
-    * .red[Script mode]: save statements in Python script
-    
-    
 ---
 
 # Why Python
@@ -734,10 +750,26 @@ class HelloWorld {
 * Disadvantages
     * As a scripting language, it requires a interpreter
     * Performance might be an issue (memory, computation)
-    * Weak typing might be harder to debug (weak satic semantic checking)
+    * Weak typing might be harder to debug (weak static semantics checking)
         * Not optimal for programs that have high reliability constraints
-        * Not optimal for programs that are built and maintained by many people or over a long period of time    
+        * Not optimal for programs that are built and maintained by many people or over a long period of time
 
+---
+
+# Using Python
+
+* Python Interpreter
+   * Translate source code into some efficient intermediate representation and immediately execute this
+   * .red[souce code(.py)] -> .red[byte code(.pyc)] -> .red[PVM(Python Virual Machine; Python Interpreter)]
+ 
+ 
+* Python must be installed and configured prior to use
+   * One of the items installed is the Python interpreter
+
+
+* Python interpreter can be used in two modes:
+   * .red[Interactive mode]: enter statements on keyboard
+   * .red[Script mode]: save statements in Python script
 
 ---
 
@@ -779,7 +811,7 @@ python filename
     * Runs in the interactive mode
     * Has a built-in text editor with features designed to help write Python programs
 
-    <img src="https://user-images.githubusercontent.com/38465539/92340720-72640500-f0f6-11ea-9b4b-73d8bc56c53a.png" width="80%">
+    <img src="https://user-images.githubusercontent.com/39995503/91443546-700bda80-e8ae-11ea-8c89-5b7683d13c8e.png" width=700>
 
 ---
 
