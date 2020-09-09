@@ -7,7 +7,7 @@ name: base
 class: center, middle
 
 
-# Practice 0909
+# Practice Session #1
 
 ---
 
@@ -289,7 +289,7 @@ print(name)
 ```
 My name is Python.
 What is your name? (type in your name here and hit 'enter'): {name}
-Your name is {name}
+Your name is {name}.
 How old are you? (type in your age here and hit 'enter'): {age}
 You are {age} years old.
 ```
