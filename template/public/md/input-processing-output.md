@@ -67,7 +67,7 @@ Seoul National University
 
 .right[
 Abu Ja’far Muhammed ibin Musa .red[Al-Khowarizmi]  
-"Alrorithmi"
+"Algorithmi"
 (780-850)
 ]
 
@@ -78,9 +78,6 @@ Abu Ja’far Muhammed ibin Musa .red[Al-Khowarizmi]
 * Determine the steps that must be taken to perform the task
     * Break down required task into a series of steps
     * Create an algorithm, listing logical steps that must be taken
-
-
-* .red[Algorithm]: a set of well-defined logical steps that must be taken to perform a task
     * Algorithms are often described in Pseudocode
 
 
@@ -145,13 +142,40 @@ print("This is my second Python output!") # string: argument
 ```
 
 ---
+
+# Function Definitions and Function Calls
+
+* In Python, each fuinction definition is of the form:
+
+
+&ensp;&ensp;&ensp;&ensp;`def` .blue[*name of function*] (list of .green[*formal parameters*]): <br\>  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;.red[*body of function*]
+
+
+* Example:
+
+    ```python3
+    def maxVal(x, y):
+        if x > y:
+            return x
+        else:
+            return y
+    ```
+
+
+* We can call this function after definition:
+    ```python3
+    maxVal(3, 4)  # this expression returns 4
+    ```
+    
+---
 # Strings and String Literals
 
 * .red[String]: sequence of characters that is used as data
 * .red[String literal]: string that appears in actual code of a program
     * Must be enclosed in single (`'`) or double (`"`) quote marks
 * String literal can be enclosed in triple quotes (`'''` or `"""`)
-   * Enclosed string can contain both single and double quotes and can have multiple lines
+   * Enclosed string can contain both single(`'`) and double(`"`) quotes and can have multiple lines
    * .red[Multiline strings] with triple quotes
         
 ```python3
@@ -173,9 +197,9 @@ Dull roots with spring rain.""")
 # `print` Function with Multiple Arguments
 
 * Python allows one to display multiple items with a single call to print
-    * Items are separated by commas when passed as arguments
-    * Arguments displayed in the order they are passed to the function
-    * Items are automatically separated by a **space** when displayed on screen
+   * Items are separated by commas when passed as arguments
+   * Arguments displayed in the order they are passed to the function
+   * Items are automatically separated by a .red[space] when displayed on screen
     
 ```python
 # This program demonstrates the print function with two arguments.
@@ -210,7 +234,7 @@ print("This is my second Python output!") # second statement
 ---
 # Multiline String as Comments
 
-* Python ignore string literals that are not assigned to a variable
+* Python <strong>ignore</strong> string literals that are not assigned to a variable
 * multiline string literals as multiline comment
 
 * Example: relu function in activations.py (Keras project)
@@ -233,13 +257,13 @@ def relu(x, alpha=0., max_value=None):
 # Variables
 
 * Variable: .red[**name**] that .red[**represents a value**] stored in main memory
-    * Used to access and manipulate data stored in memory
-    * A variable references the value it represents
+   * Used to access and manipulate data stored in memory
+   * A variable .red[references] the value it represents
 
 
 * In Python, .red[a variable is just a name], nothing more!
 
-* **Assignment** statement: used to .red[**create a variable**] and make it .red[**reference**] data
+* .red[**Assignment**] statement: used to .red[**create a variable**] and make it .red[**reference**] data
 * General format is `variable = expression`
     * Example: `age = 25`
     * ***Assignment operator***: the equal sign (`=`)
@@ -278,15 +302,15 @@ new_age = age # create another vaiable that also references the same object
 
 
 * Variable name should reflect its use
-    
-    gross_pay  
+```    
+    gross_pay  # snamke case
     pay_rate  
     hot_dogs_sold_today  
     
-    grossPay  
+    grossPay   # camel case
     payRate  
     hotDogsSoldToday
-
+```
 
 
 ---
@@ -337,8 +361,8 @@ print('The data type of "year":\n', type(year))
    * .red[No decimal point] considered `int`, otherwise, considered `float`
  
  
-* Some operators behave differently depending on data type (`+` is overloaded)
-    * `1+2`
+* Some operators behave differently depending on data type (`+`/`*` is overloaded)
+    * `1 + 2`
     * `'a'+'b'`
     * `3 * 4`
     * `3 * 'a'`
@@ -356,7 +380,7 @@ print('The data type of "year":\n', type(year))
        * prompt is typically a string instructing user to enter a value
    * Does not automatically display a space after the prompt
    
---
+
 
 ```python
 # Get the user's first name.
@@ -378,7 +402,7 @@ print('Hello,', first_name, last_name)
     * `function1(function2(argument))`
     * value returned by `function2` is passed to `function1`
 
---
+
 
 ```python
 # Get the user's name, age, and income.
@@ -407,6 +431,15 @@ print('Income:', income)
     * `//` (floor division) operator performs integer division
         * Positive results truncated, negative rounded away from zero
 
+```
+    >>> 10/3
+    3.3333333333333335
+    >>> 10//3
+    3
+    >>> -10//3
+    -4
+    >>> 
+```
 ---
 
 # Math Operators in Python
@@ -462,7 +495,7 @@ print('Income:', income)
 
 * Higher precedence performed first
     * Same precedence operators execute from left to right
-    <img src="https://user-images.githubusercontent.com/39995503/91636350-cad23d00-ea3a-11ea-9a52-c27c2e248dff.png" width=500>
+    <img src="https://user-images.githubusercontent.com/39995503/92428117-406fa300-f1c9-11ea-8cb8-295c0754eae8.png" width=500>
 
 ---
   
@@ -475,6 +508,49 @@ https://docs.python.org/3/reference/expressions.html#operator-precedence
 
 ---
 
+# Assignment Statements
+
+* Simple Assignment
+`<variable> = <expr>`
+
+* `<variable>` is an identifier, `<expr>` is an expression
+* The expression on the .red[RHS](Right-Hand Side) is evaluated to produce a value which is
+then associated with the variable named on the .red[LHS](Left-Hand Side)
+    
+```
+>>> x = 3.9 * x * (1 - x)
+>>> fahrenheit = 9/5 * celsius + 32
+>>> x = 5
+```
+
+---
+# Simultaneous Assignment
+
+* Several values can be calculated at the same time
+
+    ```<var1>, <var2>, ... = <expr1>, <expr2>, ...```
+
+* Evaluate the expressions on the RHS and assign them to the variables on the LHS
+
+    ```python3
+    sum, diff = x+y, x-y
+    ```
+
+* How could you use this to swap the values for `x` and `y`?
+* Would this work?
+    ```python3
+    x = y
+    y = x
+    ```
+* We can use a temporary variable as we can do in other programming languages like C, Java
+* We can swap the values of 2 variables quite easily in Python!
+
+    `x, y = y, x`
+
+
+---
+    
+
 # Converting Math Formulas to Python Statements
 
 * Operator required for any mathematical operation 
@@ -485,7 +561,7 @@ https://docs.python.org/3/reference/expressions.html#operator-precedence
     * May need to insert parentheses 
 
 
-<img src="https://user-images.githubusercontent.com/39995503/91634001-d36d4800-ea27-11ea-8d97-28496f6c1489.png" width=700>
+.center[<img src="https://user-images.githubusercontent.com/39995503/92428864-42d2fc80-f1cb-11ea-968f-41a3c034bfb8.png" width=500>]
 
 ---
 
@@ -573,7 +649,7 @@ total = (value1 + value2 +
 * `print` function uses space as item separator
 * Special argument `sep='delimiter'` causes print to use delimiter as item separator
 
-```python
+```python3
 print('1', end=' ')
 print('2', end=' ')
 print('3')
@@ -667,11 +743,11 @@ The number is 1.23
 
 * `format(value[, format_spec])`
 
-* Convert a value to a “formatted” representation, as controlled by format_spec. 
-* The interpretation of format_spec will depend on the type of the value argument
-* There is a standard formatting syntax that is used by most built-in types: Format Specification Mini-Language.
-https://docs.python.org/3.3/library/string.html#format-specification-mini-language
 
+* Convert a value to a “formatted” string representation, as controlled by format_spec. 
+* The interpretation of format_spec will depend on the type of the value argument
+* There is a standard formatting syntax that is used by most built-in types
+   * [Format Specification Mini-Language](https://docs.python.org/3.3/library/string.html#format-specification-mini-language).
 * The default format_spec is an empty string which usually gives the same effect as calling `str(value)`.
 
 ---
