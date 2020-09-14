@@ -74,9 +74,8 @@ if condition:
 
 
 * Relational operator: determines whether a specific relationship exists between two values
-    * Example: greater than (`>`)
-
-.center[<img src="https://user-images.githubusercontent.com/39995503/91683610-0d595e00-eb90-11ea-903c-9f275deef4c4.png" width=400>]
+    
+.center[<img src="https://user-images.githubusercontent.com/39995503/92232269-3a3ba700-eee9-11ea-9ba1-928dff7ff2a9.png" width=300>]
     
 ---
 
@@ -214,7 +213,7 @@ else:
 ]
 
 ---
-# Logical Operators
+# Logical Operators (Boolean Operations)
 
 * operators that can be used to create complex Boolean expressions
 
@@ -318,9 +317,9 @@ else:
 temp = 99
     
 if not temp > 100:
-    print('It is hotter than 100.')
-else:
     print('It is not hotter than 100.')
+else:
+    print('It is hotter than 100.')
 
 print(not temp)
 print(False == 0)
