@@ -571,7 +571,8 @@ then associated with the variable named on the .red[LHS](Left-Hand Side)
 * Data type resulting from math operation depends on data types of operands
 
 
-* Two `int` values: result is an `int`
+* Two `int` values (with operator `+`, `-`, `*`, `//`): result is an `int`
+* Two `int` values (with operator `/`): result is an `float`
 * Two `float` values: result is a `float`
 * `int` and `float`: `int` temporarily converted to `float`, result of the operation is a `float`
     * Mixed-type expression
