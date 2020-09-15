@@ -240,17 +240,17 @@ print("This is my second Python output!") # second statement
 * Example: relu function in activations.py (Keras project)
 ```python3
 def relu(x, alpha=0., max_value=None):
-   """
-    Rectified Linear Unit.
-    # Arguments
-        x: Input tensor.
-        alpha: Slope of the negative part. Defaults to zero.
-        max_value: Maximum value for the output.
-    # Returns
-        The (leaky) rectified linear unit activation: `x` if `x > 0`,
-        `alpha * x` if `x < 0`. If `max_value` is defined, the result
-        is truncated to this value.
-    """
+       """
+        Rectified Linear Unit.
+        # Arguments
+            x: Input tensor.
+            alpha: Slope of the negative part. Defaults to zero.
+            max_value: Maximum value for the output.
+        # Returns
+            The (leaky) rectified linear unit activation: `x` if `x > 0`,
+            `alpha * x` if `x < 0`. If `max_value` is defined, the result
+            is truncated to this value.
+        """
         return K.relu(x, alpha=alpha, max_value=max_value)
 ```
 
