@@ -240,7 +240,8 @@ print("This is my second Python output!") # second statement
 * Example: relu function in activations.py (Keras project)
 ```python3
 def relu(x, alpha=0., max_value=None):
-    """Rectified Linear Unit.
+   """
+    Rectified Linear Unit.
     # Arguments
         x: Input tensor.
         alpha: Slope of the negative part. Defaults to zero.
@@ -250,7 +251,7 @@ def relu(x, alpha=0., max_value=None):
         `alpha * x` if `x < 0`. If `max_value` is defined, the result
         is truncated to this value.
     """
-    return K.relu(x, alpha=alpha, max_value=max_value)
+        return K.relu(x, alpha=alpha, max_value=max_value)
 ```
 
 ---
@@ -572,7 +573,7 @@ then associated with the variable named on the .red[LHS](Left-Hand Side)
 
 
 * Two `int` values (with operator `+`, `-`, `*`, `//`): result is an `int`
-* Two `int` values (with operator `/`): result is an `float`
+* Two `int` values (with operator `/`): result is n `float`
 * Two `float` values: result is a `float`
 * `int` and `float`: `int` temporarily converted to `float`, result of the operation is a `float`
     * Mixed-type expression
