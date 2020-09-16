@@ -304,7 +304,7 @@ new_age = age # create another vaiable that also references the same object
 
 * Variable name should reflect its use
 ```    
-    gross_pay  # snamke case
+    gross_pay  # snake case
     pay_rate  
     hot_dogs_sold_today  
     
