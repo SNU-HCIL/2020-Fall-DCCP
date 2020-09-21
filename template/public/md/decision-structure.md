@@ -68,17 +68,17 @@ if condition:
 ---
 # How to Define a Condition
 
-* Boolean expression: expression tested by `if` statement to determine if it is true or false
+* .red[Boolean expression]: expression tested by `if` statement to determine if it is true or false
     * Example: `a > b`
-    * `True` if a is greater than b; `False` otherwise
+    * `True` if `a` is greater than `b`; `False` otherwise
 
 
-* Relational operator: determines whether a specific relationship exists between two values
+* .red[Relational operator]: determines whether a specific relationship exists between two values
     
 .center[<img src="https://user-images.githubusercontent.com/39995503/92232269-3a3ba700-eee9-11ea-9ba1-928dff7ff2a9.png" width=300>]
     
 ---
-
+# `if` Statement - example
 ```python
 
 HIGH_SCORE = 95
@@ -107,8 +107,8 @@ if average >= HIGH_SCORE:
 
 
 * It is possible to have a block inside another block
-    * Example: if statement inside another if statement
-    * Statements in inner block must be indented with respect to the outer block
+   * Example: `if` statement inside another `if` statement
+   * Statements in inner .blue[block] must be .red[indented] with respect to the outer .blue[block]
     
 .center[<img src="https://user-images.githubusercontent.com/39995503/91687487-ce7cd580-eb9a-11ea-97c8-71df99cb6ee4.png" width=500>]
 
@@ -142,7 +142,7 @@ else:
 
 <img src="https://user-images.githubusercontent.com/39995503/91688087-2962fc80-eb9c-11ea-8823-c727d6ca24e6.png" width=450>  
 
-* Alignment and indentation are important!
+* .red[Alignment] and .red[indentation] are important!
 
 <img src="https://user-images.githubusercontent.com/39995503/91688150-56171400-eb9c-11ea-94de-d0d915503b63.png" width=700>
 
@@ -152,13 +152,13 @@ else:
 * Strings can be compared using the `==` and `!=` operators
 
 
-* String comparisons are case sensitive
+* String comparisons are .red[case sensitive]
 
 
 * Strings can be compared using `>`, `<`, `>=`, and `<=`
-    * Compared character by character based on the ASCII values for each character
-    * If shorter word is substring of longer word, longer word is greater than shorter word  
-    * e.g., 'Mary' > 'Mark'
+   * Compare character by character based on the .red[ASCII values] for each character
+   * If shorter word is substring of longer word, longer word is greater than shorter word  
+   * e.g., 'Mary' > 'Mark', 'James' > 'Jam'
     
 .center[<img src="https://user-images.githubusercontent.com/39995503/91688593-44823c00-eb9d-11ea-8b8a-c6737862790b.png" width=150>]
 
@@ -213,12 +213,12 @@ else:
 ]
 
 ---
-# Logical Operators (Boolean Operations)
+# Logical Operators (Boolean Operators)
 
 * operators that can be used to create complex Boolean expressions
 
 
-* `and` operator and `or` operator: .red[binary] operators, connect two Boolean expressions into a compound Boolean expression
+* `and` operator and `or` operator: .red[binary] operators, connect two Boolean expressions into a .red[compound] Boolean expression
 
 
 * `not` operator: .red[unary] operator, reverses the truth of its Boolean operand
@@ -227,8 +227,14 @@ else:
 # `and` Operator
 
 * Takes two Boolean expressions as operands 
+
+
 * Creates compound Boolean expression that is true only when both sub expressions are true
+
+
 * Can be used to simplify nested decision structures
+
+
 * Truth table for the `and` operator 
 
 ```
@@ -244,8 +250,14 @@ else:
 # `or` Operator
 
 * Takes two Boolean expressions as operands 
+
+
 * Creates compound Boolean expression that is true when either sub expressions is true
+
+
 * Can be used to simplify nested decision structures
+
+
 * Truth table for the `or` operator 
 
 ```
@@ -264,8 +276,12 @@ else:
 
 
 * Performed by the `or` and `and` operators
-* For `or` operator: If left operand is `True`, compound expression is `True`; the expression on the .red[right side will not be checked]. Otherwise, evaluate right operand
-* For `and` operator: If left operand is `False`, compound expression is `False`. the expression on the .red[right side will not be checked]. Otherwise, evaluate right operand
+
+
+* For `or` operator: If left operand is `True`, compound expression is `True`; the expression on the .red[right side will not be evaluated (or checked)]. Otherwise, evaluate right operand
+
+
+* For `and` operator: If left operand is `False`, compound expression is `False`. the expression on the .red[right side will not be evaluated (or checked)]. Otherwise, evaluate right operand
 
 ---
 # Short-Circuit Evaluation
@@ -289,7 +305,11 @@ else:
 # `not` Operator
 
 * Takes one Boolean expressions as operand and reverses its logical value
-* Sometimes it may be necessary to place parentheses around an expression to clarify to what you are applying the not operator
+
+
+* Sometimes it may be necessary to place parentheses around an expression to clarify to what you are applying the `not` operator
+
+
 * Truth table for the not operator 
 
 ```
@@ -302,7 +322,7 @@ else:
 ```python
 temp = 99
     
-if not (temp < 100):
+if not (temp < 100):   # () is not necessary, but it is more clear!
     print('It is hotter than 100.')
 else:
     print('It is not hotter than 100.')
@@ -316,7 +336,7 @@ else:
 ```python
 temp = 99
     
-if not temp > 100:
+if (not temp) > 100:
     print('It is not hotter than 100.')
 else:
     print('It is hotter than 100.')
@@ -325,7 +345,7 @@ print(not temp)
 print(False == 0)
 ```
 
-* `if not temp > 100` is the same as `if (not temp) > 100`
+* `if not temp > 100` is the same as `if not (temp > 100)`
 * `temp` is not `0` -> meaning it is `True` -> `not temp` is `False` -> value of `False` is `0`
 
 ---
@@ -337,7 +357,19 @@ print(False == 0)
 
 * To determine whether a numeric value is outside of a specific range of values, use `or` operator
     * Example: `x < 10 or x > 20`
-    
+
+
+* The following compound comparisons are valid expressions in Python
+
+```python3
+>>> 1 < 5 < 7
+True
+>>> x = 1
+>>> 2 > x < 7
+True
+>>> 5 > 4 > 3.2 >= 1 == 1 != 8
+True
+```
 ---
 # Boolean Variables
 
@@ -349,9 +381,10 @@ print(False == 0)
 
 
 * Commonly used as flags
-* Flag: variable that signals when some condition exists in a program
+* .red[Flag]: variable that signals when some condition exists in a program
     * Flag set to `False` -> condition does not exist
     * Flag set to `True` -> condition exists
+    * e.g., `isSomeConditionSet = True`
     
 ---
 # Truth Value Testing
@@ -375,5 +408,6 @@ print(False == 0)
 
 # Acknowledgement
 
-* Professor Tony Gaddis and Pearson Education, Ltd.
+* Lecture Notes, Professor Hyungjoo Kim
+* Starting out with Python, Professor Tony Gaddis and Pearson Education, Ltd.
 
