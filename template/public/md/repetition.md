@@ -238,6 +238,12 @@ for num in range(5):
 for num in range(1, 10, 2):
     print(num, end=' ')
 # prints 1 3 5 7 9
+```
+
+---
+# Iterating Over a String
+
+```python
 
 for num in range(0, -10, -2):
     print(num, end=' ')
@@ -246,12 +252,6 @@ for num in range(0, -10, -2):
 for num in range(0):
     print num
 # prints nothing
-```
-
----
-# Iterating Over a String
-
-```python
 
 for c in "I'm learning Python":
     print(c)
@@ -291,7 +291,7 @@ print('--------------')
 # Print the numbers 1 through 10
 # and their squares.
 
-for number in range(1, end + 1):  // range doesn't include stop
+for number in range(1, end + 1):  # range doesn't include stop
     square = number**2
     print(number, '\t', square)
 ```
@@ -618,4 +618,7 @@ for j in range(x):
 
 # Acknowledgement
 
-* Professor Tony Gaddis and Pearson Education, Ltd.
+* The Python Tutorial, https://docs.python.org/3/tutorial/index.html
+* Lecture Notes, Professor Hyungjoo Kim
+* Starting out with Python, Professor Tony Gaddis and Pearson Education, Ltd.
+* Introduction to Computation and Programming Using Python, John V. Guttag

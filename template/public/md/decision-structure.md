@@ -346,7 +346,8 @@ print(False == 0)
 ```
 
 * `if not temp > 100` is the same as `if not (temp > 100)`
-* `temp` is not `0` -> meaning it is `True` -> `not temp` is `False` -> value of `False` is `0`
+* `(not temp) > 100`
+   * `temp` is not `0` -> meaning it is `True` -> `not temp` is `False` -> value of `False` is `0`
 
 ---
 # Checking Numeric Ranges with Logical Operators
@@ -408,6 +409,7 @@ True
 
 # Acknowledgement
 
+* The Python Tutorial, https://docs.python.org/3/tutorial/index.html
 * Lecture Notes, Professor Hyungjoo Kim
 * Starting out with Python, Professor Tony Gaddis and Pearson Education, Ltd.
 
