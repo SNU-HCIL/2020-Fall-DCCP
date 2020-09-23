@@ -325,7 +325,7 @@ print(math.sqrt(2))
 1. `근사 초기값 설정` <img src="https://latex.codecogs.com/gif.latex?x_0>0" title="x_0>0" />
 2. `자연수 n 에 대한 근사값 업데이트` <img src="https://latex.codecogs.com/gif.latex?x_n" title="x_n" />
 <div width="100%" style="text-align:center;margin-bottom:20px">
-    <img src="https://latex.codecogs.com/gif.latex?\large&space;x_n=\frac{1}{2}\left&space;(&space;x_{n-1}&space;&plus;&space;\frac{a}{x_n}&space;\right&space;)" title="\large x_n=\frac{1}{2}\left ( x_{n-1} + \frac{a}{x_n} \right )" />
+    <img src="https://latex.codecogs.com/gif.latex?\large&space;x_n=\frac{1}{2}\left&space;(&space;x_{n-1}&space;&plus;&space;\frac{a}{x_{n-1}}&space;\right&space;)" title="\large x_n=\frac{1}{2}\left ( x_{n-1} + \frac{a}{x_n} \right )" />
 </div>
 3. `수렴 조건 충족 시 중단`
 <div width="100%" style="text-align:center">
