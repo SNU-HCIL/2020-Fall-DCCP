@@ -135,11 +135,11 @@ Seoul National University
 .row[
 .col-5[
 ```python3
-def show_triple(number)
+def show_triple(number):
     result = number * 3
     print(result)
     
-def main()
+def main():
     value = 10
     show_triple(value)
 ```
@@ -261,10 +261,10 @@ printName('Jason', firstName = 'Jason', False) # error
 ---
 # Keyword Arguments and Default (Argument) Values
 
-* We can specify a deault value for one or more arguments/parameters.
+* We can specify a default value for one or more arguments/parameters.
 
 
-* Keyword arguments are commonly used with default parameter values
+* Keyword arguments are commonly used with default argument values
 
 ```python
 def printName(firstName, lastName='Mraz', reverse=False):
@@ -349,7 +349,7 @@ print(x)
 * .green[When a function is called], .purple[a new symbol table is created] for the function 
    * It keeps track of .blue[all names] defined within the function and their .blue[current bindings]
    * If a function is called from within the function, another stack frame is created
-   * Functions can reference variables from the containing scope 
+   * .green[Functions can reference variables from the containing scope] 
 * When the function completes, its .red[stack frame] goes away (is .red[popped] off)
 
 .row[
@@ -477,9 +477,9 @@ show_value()
 ```
 
 ---
-# To Assign a Value to Global Variable
+# To Change a Global Variable
 
-* If a function needs to assign a value to a global variable, the global variable must be .red[redeclared] within the function
+* If a function needs to assign a new value to a global variable, the global variable must be .red[redeclared] with the keyword `global` within the function
    * gernal format: `global variable_name`
    
 ```python
@@ -488,16 +488,39 @@ number = 0
 
 def main():
     global number
-    number = int(input('Enter a number: "))
+    number = int(input('Enter a number: '))
     show_number()
     
 def show_number():
-    print("The number you entered is', number)
+    print('The number you entered is', number)
 
 main()
 ```
 
-* If you do not declare a global variable with the global keyward in side a function, you cannot change the variable's value inside that function.
+---
+# Hide/Shadow a Global Variable
+
+* If you do not redeclare a global variable with the `global` keyword inside a function, 
+   * you cannot change the variable's value inside that function
+   * you are creating a new .red[local variable with the same name] 
+   * --> .red[hiding]/.red[shadowing] the global variable
+   
+```python
+# Create a global variable.
+number = 0
+
+def main():
+    global number   # redeclare the variable, number
+    number = int(input('Enter a number: '))
+    show_number()
+    
+def show_number():
+    number = 100    # shadow the global variable
+    print('The number you entered is', number)
+
+main()
+```
+
 
 ---
 # Global Constants 
@@ -561,6 +584,10 @@ main()
 
 ```python
 def sum_many(*args):
+    """
+    args: passed as a tuple
+    """
+    
     print(args)
     sum = 0
     for i in args:
@@ -603,6 +630,11 @@ print(result)  # prints 120
 
 ```python3
 def sum(*values, **options):
+    """
+    values: passed as a tuple
+    options: passed as a dictionary
+    """
+    
     sum = 0
     answer = ''
     
@@ -635,7 +667,7 @@ def sum(*values, **options):
 '6'
 >>> sum(1, 2, 3, explain = True)
 'The answer is 6'
->>> sum(1, 2, 3, neg=True, explain=True)
+>>> sum(1, 2, 3, neg=True,explain=True)
 'The answer is -6'
 ```
 ]
@@ -690,7 +722,7 @@ def f(a, b):
 ```python3
 >>> def make_incrementor(n):
 ...     return lambda x: x + n    
-...     # lambda function can reference the formal parameter (local variable)
+...     # lambda function can reference the formal parameter (local variable, n)
 ...
 >>> f = make_incrementor(42)
 >>> f(0)

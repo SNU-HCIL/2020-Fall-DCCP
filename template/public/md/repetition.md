@@ -321,7 +321,7 @@ for i in range(0, x):
     x=5
 ```
 
-* The argument `x` is evaluated just before the first iteration!
+* The argument `x` is evaluated just once before the first iteration!
 
 
 ---
