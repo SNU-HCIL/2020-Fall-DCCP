@@ -66,6 +66,9 @@ Seoul National University
 * for .red[immutable types], operations that compute new values may actually return a reference to any existing object with the same type and value (to save memory)
    * after `a = 1; b = 1`, `a` and `b` .red[may or may not] .purple[refer to the same object] with the value one, depending on the implementation 
    * (Note that `a = b = 1` always assigns the same object to both `a` and `b`.)
+
+.row[
+.col-6[
    ```python3
    >>> a = 1
    >>> b = 1
@@ -79,6 +82,21 @@ Seoul National University
    >>> a is b
    True
    ```
+]
+.col-6[
+```python3
+>>> word="string"  
+>>> word1="string"
+>>> word is word1 # string is immutable
+True
+>>> s='1412341234123412341234afasdf'
+>>> s1='1412341234123412341234afasdf'
+>>> s1 is s
+True
+```
+]
+]
+
 ---
 # Objects in Python
 
@@ -983,7 +1001,7 @@ print(result)   # prints 15
 # Comparison of Sequence Types
 
 
-| Type     |      Type of elements         |  Examples of literals       |     Mutable       |
+|&nbsp;&nbsp;Type&nbsp;&nbsp;|&nbsp;&nbsp;Type of elements&nbsp;&nbsp;|&nbsp;&nbsp;Examples of literals&nbsp;&nbsp;|&nbsp;&nbsp;Mutable&nbsp;&nbsp;|
 |:--------:|:-----------------------------:|:---------------------------:|:-----------------:|
 |   `str`    |       characters              |     '', 'a', 'abc'          |       No          |
 |  `tuple`   |        any type               |  (), (3,), ('abc', 4)       |       No          |
