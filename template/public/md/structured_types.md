@@ -359,7 +359,7 @@ TypeError: 'str' object does not support item assignment
 ```
 
 ---
-# Repetition, Indexing, and Slicing
+# Repetition, Concatenation, Indexing, and Slicing
 
 ```python3
 t1 = 3 * ('1', 2)
@@ -384,7 +384,7 @@ def intersect(t1, t2):
    result = ()
    for e in t1:
       if e in t2:
-         result += (e,)
+         result += (e,)  # result references a new tuple object
    return result
    
 result = intersect((1, 2, 3), (2, 3, 4))
@@ -399,6 +399,8 @@ x, y = (3, 4)    # unpacking
 print(x, y)      # prints 3 4
 x, *y = (3, 4, 5, 6)
 print(x, y)      # prints 3 [4, 5, 6]
+*x, y = (3, 4, 5, 6)
+print(x, y)      # prints [3, 4, 5] 6
 a, b, c = 'xyz'  # unpacking
 print(a, b, c)   # prints x y z
 a, *b = 'xyz'    # unpacking
@@ -455,7 +457,7 @@ True
 False
 ```
 * amount of memory space occupied by a range is .red[not propotional to its length]
-* but it is a `tuple`/`string`/`list`
+* but it is for a `tuple`/`string`/`list`
 
 ---
 # Lists
@@ -502,14 +504,25 @@ False
 # Slicing and Concatenation 
 
 * All slice operations return a .red[new list] containing the requested elements 
+   * note: slice .blue[on the left side of assignment] mutates the original list
 
 
 ```python3
->>> squares[-3:]  # slicing returns a new list
+>>> squares = [1, 4, 9, 16, 25]
+>>> nSq = squares[-3:]  # slicing returns a new list
+>>> nSq
 [9, 16, 25]
->>> squares[:]    # cloning
+>>> nSq[0] = 10
+>>> nSq                 # nSq is mutated
+[10, 16, 25]
+>>> squares
+[1, 4, 9, 16, 25]       # squares is intact
+>>> nSq = squares[:]    # cloning
 [1, 4, 9, 16, 25]
->>>
+>>> nSq is squares      # they reference different list objects
+False
+>>> nSq == squares      # their values are the same
+True
 >>> squares + [36, 49, 64, 81, 100]
 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
@@ -550,7 +563,7 @@ False
 ```
 ]
 .col-7[
-<img src="https://user-images.githubusercontent.com/39995503/94368360-9aa3ba00-011e-11eb-868a-468e1479e013.png" width=400>
+<img src="https://user-images.githubusercontent.com/39995503/94368360-9aa3ba00-011e-11eb-868a-468e1479e013.png" width=370>
 ]
 ]
 
@@ -583,14 +596,16 @@ False
 # Assignment to Slices
 
 * Assignment to slices is also possible
-* The original list is mutated
+   * when slice is on the left side of assignment
+   * note: slice .red[on the right side] returns a new list
+* The original list is .red[mutated]
 
 ```python3
 >>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 >>> letters
 ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 >>> # replace some values
->>> letters[2:5] = ['C', 'D', 'E']
+>>> letters[2:5] = ['C', 'D', 'E']  # letters is mutated!
 >>> letters
 ['a', 'b', 'C', 'D', 'E', 'f', 'g']
 >>> # now remove them
@@ -959,7 +974,7 @@ print(filtered_list)   # prints [2, 4, 6, 8, 10]
    * Has two optional arguments which must be specified as keyword arguments
    * .red[key] specifies a .red[function] of one argument that is used to .purple[extract a comparison key] .red[from each element] in iterable 
       * The default value is `None` (compare the elements directly)
-   * .red[reverse] is a `boolean` value. If set to True, then the list elements are sorted as if each comparison were reversed
+   * .red[reverse] is a `boolean` value. If set to `True`, then the list elements are sorted as if each comparison were reversed
 
 
 ```python
@@ -1025,6 +1040,9 @@ print(result)   # prints 15
 
 * A set is an unordered collection .red[with no duplicate] elements
    * compound data type, container
+
+
+* `set` is .red[mutable]
 
 
 * Basic uses include .red[membership testing] and .red[eliminating duplicate entries]
