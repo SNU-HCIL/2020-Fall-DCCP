@@ -97,10 +97,10 @@ open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None,
 
 |&nbsp;&nbsp;&nbsp;File Access Mode&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;I/O Mode&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;File Open Mode&nbsp;&nbsp;&nbsp;| 
 |:--------:|:-----------------------------:|:---------------------------:|
-|  .red[r]       |                        | rt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rb          | 
+|  .red[**r**]       |                        | rt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rb          | 
 |  w       |                        | wt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wb              |
 |  x       |                        | xt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xb              |
-|  a       |        .red[t]               | at&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ab              |
+|  a       |        .red[**t**]               | at&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ab              |
 |  r+      |        b               | r+t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r+b            | 
 |  w+      |                        | w+t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w+b           |
 |  x+      |                        | x+t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x+b           |
@@ -299,10 +299,10 @@ https://docs.python.org/3/library/io.html
 ---
 # `text` mode vs. `binary` mode
 
-* Normally, files are opened in text mode, that means, you read and write .red[strings] from and to the file
+* By default, files are opened in .red[text] mode, that means, you read and write .red[strings] from and to the file
 
 
-* In binary mode: the data is read and written in the form of .red[bytes objects]. 
+* In .red[binary] mode: the data is read and written in the form of .red[bytes objects]. 
    * This mode should be used for all files that don’t contain text
    * e.g., JPEG or EXE files
 
@@ -319,11 +319,33 @@ b'5'
 >>> f.read(1)
 b'd'
 ```
+---
+# Saving Objects to Bytes Stream
 
+* .red[Serializing a object] is the process of converting the object to a stream of .red[bytes] that can be saved to a file for later retrieval. 
+   * In Python, object serialization is called .red[pickling].
+   
+```python3
+>>> import pickle
+>>> phonebook = {'Chris':'555-1111', 'Katie':'555-2222', 'Joanne':'555-3333'} 
+>>> output_file = open('phonebook.dat', 'wb')  # open in the binary mode
+>>> pickle.dump(phonebook, output_file) 
+>>> output_file.close() 
+>>>
+```
+```python3
+>>> import pickle
+>>> input_file = open('phonebook.dat', 'rb')  # open in the binary mode
+>>> pb = pickle.load(inputfile)
+>>> pb
+{'Chris': '555-1111', 'Joanne': '555-3333', 'Katie': '555-2222'}
+>>> input_file.close()
+>>>
+```
 ---
 # `open()` with `with` statement
 
-* It is good practice to use the `with` keyword when dealing with file objects 
+* It is a good practice to use the `with` keyword when dealing with file objects 
 
 
 * The file is properly .read[closed] after its suite finishes, 
@@ -340,6 +362,9 @@ b'd'
 >>> f.closed
 True
 ```
+
+https://docs.python.org/3/library/io.html
+
 ---
 ```python3
 with open ('foo.txt', 'r') as f:
@@ -405,7 +430,7 @@ def redInt():
    * if no handler is found, it is an .red[unhandled exception] and .red[execution stops] with an error message.
 
 ---
-# Exceptions --> Crash
+# Exceptions -> Crash
 
 * A program .red[crashes] when an .red[unhandled exception] has been raised.
 
@@ -429,7 +454,7 @@ except FileNotFoundError:
     msg = "Sorry, the file " + filename + " does not exist."
     print(msg)
 
-print("Let's keep going!')  # exception handled -> prevent crash
+print("Let's keep going!")  # exception handled -> prevent crash
 ```
 
 ---
@@ -450,14 +475,119 @@ try:
     successFailureRatio = numSuccesses/numFailures # ZeroDivisionError could occur
     print('The success/failure ratio is', successFailureRatio)
 except ZeroDivisionError:
-    print('Nofailures, so the success/failure ratio is undefined.)
+    print('No failures, so the success/failure ratio is undefined.)
 print('Now here')
+```
+
+---
+# Raising Exceptions
+
+* The `raise` statement allows the programmer to force a specified exception to occur
+
+```python3
+>>> raise NameError('HiThere')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: HiThere
+```
+* The sole argument to `raise` indicates the exception to be raised. 
+   * This must be either an `exception` instance or an exception class (derived from Exception class/type). 
+   * If an `exception` class is passed, it will be implicitly instantiated by calling its constructor with no arguments:
+   
+```python3
+raise ValueError  # shorthand for 'raise ValueError()' -> constructor
+```
+
+---
+# Raising Exceptions
+
+* re-raise an exception
+   * If you need to determine whether an exception was raised but don’t intend to handle it, a simpler form of the `raise` statement allows you to re-raise the exception:
+   
+```python3
+>>> try:
+...     raise NameError('HiThere')
+... except NameError:
+...     print('An exception flew by!')
+...     raise
+...
+An exception flew by!
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+NameError: HiThere
+>>>
+```
+---
+# Exceptions as Control Flow Mechanism
+
+* don't just think of exceptions as purely for handling errors
+
+
+* they are a convenient flow-of-control mechanism that can be used to simplify programs
+
+
+* a function usually signals the caller by returning a specific value (`-1` or `None`), but
+
+
+* it is better to have a function .red[raise an exception] when something went wrong
+   * when it cannot produce a reesult that is consistent with the function's specification
+
+
+* `raise exceptionName(arguments)`
+   * `exeptionName` can be built-in exceptions or your own exceptions
+   * usually `arguemtns` is just a single `string`
+
+---
+# Exceptions for Control Flow
+
+```python
+def getRatios(vect1, vect2):
+    """Assumes: vect1 and vect2 are equal length lists of numbers
+       Returns: a list containing the meaningful values of vect1[i]/vect2[i]"""
+    ratios = []
+    for index in range(len(vect1)):
+        try:
+            ratios.append(vect1[index]/vect2[index])
+        except ZeroDivisionError:
+            ratios.append(float('nan')) #nan = Not a Number
+        except:
+            raise ValueError('getRatios called with bad arguments')
+    return ratios
+
+try:
+    print(getRatios([1.0,2.0,7.0,6.0], [1.0,2.0,0.0,3.0]))
+    print(getRatios([], []))
+    print(getRatios([1.0, 2.0], [3.0]))
+except ValueError as msg:
+    print(msg)
+```
+---
+# Control Flow w/o `try`-`except`
+
+```python3
+def getRatios(vect1, vect2): 
+    """Assumes: vect1 and vect2 are lists of equal length of numbers
+       Returns: a list containing the meaningful values of vect1[i]/vect2[i]"""
+    ratios = []
+    if len(vect1) != len(vect2):
+        raise ValueError('getRatios called with bad arguments')
+    for index in range(len(vect1)):
+        vect1Elem = vect1[index]
+        vect2Elem = vect2[index]
+        if (type(vect1Elem) not in (int, float))\
+           or (type(vect2Elem) not in (int, float)):
+            raise ValueError('getRatios called with bad arguments')
+        if vect2Elem == 0.0:
+            ratios.append(float('NaN')) #NaN = Not a Number
+        else:
+            ratios.append(vect1Elem/vect2Elem)
+    return ratios
 ```
 ---
 # Exceptions in Called Functions
 
-* Exception handlers don’t just handle exceptions if they occur immediately in the try clause, 
-* but also if they occur inside functions that are called (even indirectly) in the try clause. 
+* Exception handlers don’t just handle exceptions if they occur immediately in the `try` clause, 
+* but also if they occur inside functions that are called (even indirectly) in the `try` clause 
 
 ```python
 def this_fails():
@@ -472,7 +602,7 @@ except ZeroDivisionError as err:  # We can store the error as a variable
 ---
 # `else` clause
 
-* an optional `else` clause is useful for code that .red[must be executed] if the `try` clause .red[does not raise any exception].
+* an optional `else` clause is useful for code that .red[must be executed] if the `try` clause .red[does not raise any exception]
    * `else` clause must appear after all `except` clauses
 
 ```python3
@@ -490,7 +620,7 @@ else:
 
 
 * If a `finally` clause is present, the `finally` clause will execute as the last task before the `try` statement completes. 
-* The `finally` clause runs .red[whether or not] the `try` statement produces an exception.
+* The `finally` clause runs .red[whether or not] the `try` statement produces an exception
 
 ```python
 def divide(x, y):
