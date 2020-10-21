@@ -414,7 +414,7 @@ TypeError: Can't convert 'int' object to str implicitly
 # `try`-`except` Clause
 
 ```python3
-def redInt():
+def readInt():
     while True: # asks for input until a valid integer has been entered
         try:
             x = int(input("Please enter a number: "))
@@ -530,7 +530,7 @@ NameError: HiThere
 
 
 * it is better to have a function .red[raise an exception] when something went wrong
-   * when it cannot produce a reesult that is consistent with the function's specification
+   * when it cannot produce a result that is consistent with the function's specification
 
 
 * `raise exceptionName(arguments)`
