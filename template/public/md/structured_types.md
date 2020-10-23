@@ -317,7 +317,7 @@ TypeError: 'str' object does not support item assignment
 
 * str.`count`(s1)
 * str.`find`(s1)
-* str.`r-find`(s1)
+* str.`rfind`(s1)
 * str.`index`(s1)  # raise an exception if `s1` is not in `str`
 * str.`rindex`(s1) # raise an exception if `s1` is not in `str`
 * str.`lower`()
