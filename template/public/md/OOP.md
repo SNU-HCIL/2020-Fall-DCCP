@@ -199,7 +199,7 @@ https://simple.wikipedia.org/wiki/Object-oriented_programming
    * `name`, `friend`
 
 
-* **Private data attributes**: keep external code from access it
+* **Private data attributes**: keep external code from accessing it
    * place two underscores (`__`) in front of attribute name
    * an object’s data attributes are better to be .red[private]
    * private attributes that cannot be accessed except from inside an object .red[don’t exist] in Python
@@ -549,7 +549,7 @@ print(stephen.get_name())
 
 
 * **Class Method**: method for the entire class
-   * SNUStudent.num_students(): return the number of students class 에 있는 전체학생수를 return 하는 num_students
+   * SNUStudent.num_students(): return the number of students of the class type
    * SNUStudent.avg_gpa(): return the average gpa of all SNU students
    
 ---
