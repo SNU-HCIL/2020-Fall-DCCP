@@ -89,22 +89,6 @@ Seoul National University
    * We have used built-in types without giving any thoughts to how these types mihgt be implemented
 ---
 
-# Decomposition and Abstraction
-
-* two mechanisms to help us manage complexity in a way that facilitates changes in real world
-
-
-* .red[Decomposition] creates structure in a probem
-   * design programs using many different classes
-
-
-* .red[Abstraction] surpresses (i.e., hides) details
-
-
-* The key is to suppress the **appropriate** details
-   * create domain-speific types (i.e., ADTs) -> data abstraction
----
-
 # Data Abstraction and Encapsulation
 
 * The fundamental ideas behind **classes** are .red[data abstraction] and .red[encapsulation]
@@ -120,6 +104,21 @@ Seoul National University
    * a class that is encapsulated .red[hides its implementation]
    * users of the class can use the interface but have .red[no access to the implementation]
 
+---
+# Decomposition and Abstraction
+
+* two mechanisms to help us manage complexity in a way that facilitates changes in real world
+
+
+* .red[Decomposition] creates structure in a probem
+   * design programs using many different classes
+
+
+* .red[Abstraction] surpresses (i.e., hides) details
+
+
+* The key is to suppress the **appropriate** details
+   * create domain-speific types (i.e., ADTs) -> data abstraction
 ---
 # Class
 
