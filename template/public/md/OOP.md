@@ -287,7 +287,136 @@ class Dog:
 ```
 
 ---
-# Accesing Private Members
+# Bundling named data items
+
+.row[
+.col-6[
+* clients may add data attributes of their own to an instance object without affecting the validity of the methods
+
+```python3
+class Employee:
+    pass
+
+# Create an empty employee record
+john = Employee() 
+# Fill the fields of the record
+john.name = 'John Doe'
+john.dept = 'computer lab'
+john.salary = 1000
+```
+]
+.col-6[
+* If the same attribute name occurs in both an instance and in a class, then attribute lookup prioritizes the instance:
+
+```python3
+>>> class Warehouse:
+        purpose = 'storage'
+        region = 'west'
+>>> w1 = Warehouse()
+>>> print(w1.purpose, w1.region)
+storage west
+>>> w2 = Warehouse()
+>>> w2.region = 'east'
+>>> print(w2.purpose, w2.region)
+storage east
+```
+]
+]
+
+* `pass` is a null operation -- when it is executed, nothing happens. 
+   * useful as a .red[placeholder] when a statement is .red[required syntactically], but no code needs to be executed.
+
+---
+# Add/Remove/Modify Attributes
+
+```python3
+class Dog:
+    kind = 'canine'         # class variable shared by all instances
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.kind = 'dog'          # adding an instance variable, kind to d
+>>> e.kind = 'gangaji'      # adding an instance variable, kind to e
+>>> d.kind                  # instance variable
+'dog'
+>>> e.kind                  # instance variable
+'gangaji'
+>>> Dog.kind                # class variable
+'canine'
+>>> d.__dict__
+{'name': 'Fido', 'kind': 'Dog'}
+```
+
+---
+# Add/Remove/Modify Attributes
+```python3
+class Dog:
+    kind = 'canine'         # class variable shared by all instances
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
+
+>>> d = Dog('Fido')
+>>> d.age = 1       # add an attribute 'age'
+>>> d.sex = 'male'  # add an attribute 'sex'
+>>> del d.age       # delete the attritue 'age'
+```
+* But the class definition doesn't change, only the object changes
+* We may also use the following built-in functions
+   * `setattr(obj, name, value)` : to set an attribute. If attribute does not exist, then it would be created.
+   * `hasattr(obj, name)` : to check if an attribute exists or not
+   * `getattr(obj, name[, default])` : to access the attribute of object
+   * `delattr(obj, name)` : to delete an attribute.
+
+---
+# Built-in Special Class Variables
+
+* `__dict__` : Dictionary containing the class’s namespace.
+* `__doc__` : Class documentation string or None if undefined.
+* `__name__` : Class name.
+* `__module__` : Module name in which the class is defined. This attribute is “__main__” in interactive mode.
+* `__bases__` : A possibly empty tuple containing the base classes, in the order of their occurrence in the base class list.
+
+---
+```python3
+class Employee:
+    'Common base class for all employees'
+    empCount=0
+    def __init__(self,name,salary):
+       self.name=name
+       self.salary=salary
+       Employee.empCount+=1
+    def displayCount(self):
+       print("TotalEmployee%d" % Employee.empCount)
+    def displayEmployee(self):
+       print("Name:",self.name,",salary:",self.salary)
+
+    emp1=Employee("Zara",2000)
+    emp2=Employee("Manni",5000)
+    emp1.displayEmployee( )
+    emp2.displayEmployee( )
+    print("TotalEmployee%d" % Employee.empCount)
+```
+---
+```python3
+>>> Employee.__doc__
+'Common base class for all employees'
+>>> Employee.__name__
+'Employee'
+>>> Employee.__module__
+'__main__'
+>>> Employee.__bases__
+(<class 'object'>,)
+>>> Employee.__dict__
+mappingproxy({'__module__': '__main__', '__doc__': 'Common base class for all employees', 'empCount': 2, '__init__': <function Employee.__init__ at 0x7f9b8fed2af0>, 'displayCount': <function Employee.displayCount at 0x7f9b8fed2b80>, 'displayEmployee': <function Employee.displayEmployee at 0x7f9b8fed2c10>, '__dict__': <attribute '__dict__' of 'Employee' objects>, '__weakref__': <attribute '__weakref__' of 'Employee' objects>})
+>>> 
+```
+---
+# Information Hiding with Private Members
+
+* In C++ terminology, normally class members (including the data members) are .red[public], and all member functions are .red[virtual]. 
+
 
 * “Private” instance variables that cannot be accessed except from inside an object
    * .red[information hiding]
@@ -400,7 +529,48 @@ print(stephen.get_name())
 * all instances of user-defined classes can be used as dictionary (`dict`) keys
    * they are 'hashable'
 
+---
+# Instance vs. Class Variables
+# Instance vs. Class Methods
 
+* class SNUStudent
+
+
+* **Instance Variable**: variable belonging to an instacne
+   * Name, Student_ID , Courses, GPA
+
+
+* **Class Variable**: variable shared by all instances of a Class
+   * University_name
+
+
+* **Instance Method**: method for an instance
+   * s.gpa(): return gpa of an instance s
+   * s.taken_course(): return list of courses that s has taken
+
+
+* **Class Method**: method for the entire class
+   * SNUStudent.num_students(): return the number of students class 에 있는 전체학생수를 return 하는 num_students
+   * SNUStudent.avg_gpa(): return the average gpa of all SNU students
+   
+---
+# Class Method
+
+```python
+class A(object):
+
+    def foo(self):
+        print('executing foo')
+        
+    @classmethod          # decorator
+    def class_foo(cls):   # use cls instead of self
+        print('executing class_foo')
+
+a = A()
+A.class_foo()
+a.foo()
+a.class_foo()
+```
 ---
 
 # The Software Development Process: The WaterFall Model
