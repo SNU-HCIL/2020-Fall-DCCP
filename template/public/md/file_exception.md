@@ -612,7 +612,7 @@ try:
 except OSError:
     print('cannot open', filename)
 else:
-    print(f, 'has', len(f.readlines()), 'lines')
+    print(filename, 'has', len(f.readlines()), 'lines')
     f.close()
 ```
 ---

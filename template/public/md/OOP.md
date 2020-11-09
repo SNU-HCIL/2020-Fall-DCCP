@@ -6,7 +6,7 @@ layout: true
 class: center, middle
 
 
-# Object-oriented Prgramming in Python
+# Object-Oriented Prgramming in Python
 
 <br/>
 
@@ -37,13 +37,13 @@ Seoul National University
 # Procedural Programming
 
 * Writing programs made of .red[functions] that perform specific tasks
-* Procedures(i.e.m functions) typically operate on data items that are .red[separate] from the procedures
+* Procedures(i.e., functions) typically operate on data items that are .red[separate] from the procedures
 * Data items commonly passed from one procedure to another
 * Focus: to create .red[procedures] (or .red[fuctions]) that operate on the program’s data
 
 ---
 
-# Object-oriented Programming
+# Object-Oriented Programming
 
 * Focused on creating .red[objects] (instantces of clases)
 * Object: entity that contains (i.e., encapsulates) data and procedures/functions
@@ -202,7 +202,7 @@ https://simple.wikipedia.org/wiki/Object-oriented_programming
 * **Private data attributes**: keep external code from accessing it
    * place two underscores (`__`) in front of attribute name
    * an object’s data attributes are better to be .red[private]
-   * private attributes that cannot be accessed except from inside an object .red[don’t exist] in Python
+   * .red[private] attributes that cannot be accessed except from inside an object .red[don’t exist] in Python
    * but (limitedly) supported through .red[name mangling]
 
 
@@ -214,6 +214,7 @@ https://simple.wikipedia.org/wiki/Object-oriented_programming
 * **Private methods**: used for object’s inner workings
    * external code cannot use (i.e., call/invoke) them
    * place two underscores (`__`) in front of method name
+   * (limitedly) supported through .red[name mangling]
 
 ---
  
@@ -236,13 +237,14 @@ https://simple.wikipedia.org/wiki/Object-oriented_programming
 ```python3
 # Create a new Human object named stephen with name "Stephen"
 stephen = Human("Stephen")
+
 # Create a new Human object named joe with name "Joe" and stephen as a friend
 joe = Human("Joe", stephen)
 
-stephen.say_name() # Shows 'My name is Stephen'
+stephen.say_name()      # Shows 'My name is Stephen'
 stephen.say_goodnight() # Shows 'Good night nobody.'
-joe.say_name() # Shows 'My name is Joe'
-joe.say_goodnight() # Shows 'Good night Stephen'
+joe.say_name()          # Shows 'My name is Joe'
+joe.say_goodnight()     # Shows 'Good night Stephen'
 ```
 https://simple.wikipedia.org/wiki/Object-oriented_programming
 
@@ -345,7 +347,7 @@ class Dog:
 >>> Dog.kind                # class variable
 'canine'
 >>> d.__dict__
-{'name': 'Fido', 'kind': 'Dog'}
+{'name': 'Fido', 'kind': 'dog'}
 ```
 
 ---
@@ -369,12 +371,12 @@ class Dog:
    * `delattr(obj, name)` : to delete an attribute.
 
 ---
-# Built-in Special Class Variables
+# Built-in Special Variables
 
 * `__dict__` : Dictionary containing the class’s namespace.
 * `__doc__` : Class documentation string or None if undefined.
 * `__name__` : Class name.
-* `__module__` : Module name in which the class is defined. This attribute is “__main__” in interactive mode.
+* `__module__` : Module name in which the class is defined. This attribute is `__main__` in interactive mode.
 * `__bases__` : A possibly empty tuple containing the base classes, in the order of their occurrence in the base class list.
 
 ---
@@ -391,11 +393,11 @@ class Employee:
     def displayEmployee(self):
        print("Name:",self.name,",salary:",self.salary)
 
-    emp1=Employee("Zara",2000)
-    emp2=Employee("Manni",5000)
-    emp1.displayEmployee( )
-    emp2.displayEmployee( )
-    print("TotalEmployee%d" % Employee.empCount)
+emp1=Employee("Zara",2000)
+emp2=Employee("Manni",5000)
+emp1.displayEmployee( )
+emp2.displayEmployee( )
+print("TotalEmployee%d" % Employee.empCount)
 ```
 ---
 ```python3
@@ -417,11 +419,11 @@ mappingproxy({'__module__': '__main__', '__doc__': 'Common base class for all em
 * In C++ terminology, normally class members (including the data members) are .red[public], and all member functions are .red[virtual]. 
 
 
-* “Private” instance variables that cannot be accessed except from inside an object
+* .red[Private] instance variables that cannot be accessed except from inside an object
    * .red[information hiding]
    
    
-* “Private” instance variables that cannot be accessed except from inside an object .red[don’t exist] in Python
+* .red[Private] instance variables that cannot be accessed except from inside an object .red[don’t exist] in Python
 
 
 * but there is limited support for such a mechanism, called .red[name mangling]
@@ -532,25 +534,25 @@ print(stephen.get_name())
 # Instance vs. Class Variables
 # Instance vs. Class Methods
 
-* class SNUStudent
+* `class SNUStudent`
 
 
 * **Instance Variable**: variable belonging to an instacne
-   * Name, Student_ID , Courses, GPA
+   * `Name`, `Student_ID` , `Courses`, `GPA`
 
 
 * **Class Variable**: variable shared by all instances of a Class
-   * University_name
+   * `University_name`
 
 
 * **Instance Method**: method for an instance
-   * s.gpa(): return gpa of an instance s
-   * s.taken_course(): return list of courses that s has taken
+   * `s.gpa()`: return gpa of an instance s
+   * `s.taken_course()`: return list of courses that s has taken
 
 
 * **Class Method**: method for the entire class
-   * SNUStudent.num_students(): return the number of students of the class type
-   * SNUStudent.avg_gpa(): return the average gpa of all SNU students
+   * `SNUStudent.num_students()`: return the number of students of the class type
+   * `SNUStudent.avg_gpa()`: return the average gpa of all SNU students
    
 ---
 # Class Method

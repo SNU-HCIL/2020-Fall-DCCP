@@ -21,6 +21,7 @@ Seoul National University
 
 * In the real world, many objects are a specialized version of more general objects
 
+
 * Example: .red[grasshoppers] and .red[bees] are specialized types of .purple[insect]
    * In addition to the general insect characteristics, they have unique characteristics:
        * Grasshoppers can jump
@@ -28,9 +29,10 @@ Seoul National University
 
 ---
 
-# `Is a` Relationship (.purple[ISA])
+# `ISA` Relationship
 
-* “Is a” relationship exists when one object is a specialized version of another object
+* “.red[Is a]” relationship exists when one object is a specialized version of another object
+
 
 * Specialized object has all the characteristics of the general object plus unique characteristics
    * Rectangle .red[is a] shape
@@ -55,13 +57,13 @@ Seoul National University
 
 * Synonyms
 
-   * Attribute = Variable = Instance Variable = Data Member = Property = Representation
+   * Attribute = Variable = Instance Variable = Data Member = Data Attribute = Property = Representation
    
-   * Method = Function = Operation = Member Function = Procedure = Behavior
+   * Method = Function = Operation = Member Function = Method Attribute = Procedure = Behavior
    
-   * SuperClass = ParentClass = BaseClass
+   * Super Class = Parent Class = Base Class
    
-   * SubClass = ChildClass = DerivedClass
+   * Sub Class = Child Class = Derived Class
 
 ---
 
@@ -142,6 +144,7 @@ Internal types
 * When we defind a class (i.e., ADT), we always make it a .purple[subclass] of `object` class
 * What does `object` class have?
 
+.font-14[
 ```python3
 dir(...)
     dir([object]) -> list of strings
@@ -157,7 +160,10 @@ dir(...)
 '__new__', '__reduce__', '__reduce_ex__', '__repr__', 
 '__setattr__', '__sizeof__', '__str__', '__subclasshook__']
 ```
+]
+
 ---
+.font-12[
 ```python3
 >>> help(object)
 Help on class object in module builtins:
@@ -191,11 +197,13 @@ class object
  |  __str__(self, /)
  |      Return str(self). 
 ```
+]
 
 ---
 # Person: base class
 .row[
 .col-7[
+.font-14[
 ```python3
 import datetime
 class Person(object):
@@ -212,27 +220,29 @@ class Person(object):
     def getAge(self):
         if self.birthday == None:
             raise ValueError
-        return (datetime.date.today() \
-              - self.birthday).days
+        return (datetime.date.today() - self.birthday).days
     def __lt__(self, other):
         return self.name < other.name
-    def __str__(self): return self.name
-        
+    def __str__(self): 
+        return self.name      
 ```
 ]
+]
 .col-5[
+.font-14[
 ```python3
 me = Person('Michael Guttag')
 him = Person('Brack Obama')
 her = Person('Norah Jones')
 print(him.getLastName())
-him.setBirthday(\
-   datetime.date(1961, 8, 4))
-her.setBirthday(\
-   datetime.date(1958, 8, 16))
-print(him.getName(), 'is', \
-   him.getAge(), 'days old.')
+him.setBirthday(datetime.date\
+                (1961, 8, 4))
+her.setBirthday(datetime.date\
+                (1958, 8, 16))
+print(him.getName(), 'is', him.getAge(),\
+      'days old.')
 ```
+]
 ]
 ]
 
@@ -291,7 +301,7 @@ class SNUPerson(Person):
       * <font color='purple'>instance method</font>, `getIdNum` (each instance has each own)
    * .red[override] (i.e., replace) attributes of the superclass
       * `__init__` : invokes `Person.__init__` first to initialize the .red[inherited] instance variable `self.name`
-      * `__lt__`
+      * `__lt__` : overrides the `__init__` of the super class, Person
 ---
 # SNUPerson: derived class
 
@@ -308,12 +318,13 @@ print(str(p1) + '\'s idnumber is ' + str(p1.getIdNum())
    * `__str__` of the `Person` class is called.
    
    
-* `p1.getIdNum()` -> runtime system checks to se if there is an `getIdNum` method associated with `SNUPerson`
+* `p1.getIdNum()` -> runtime system checks to see if there is an `getIdNum` method associated with `SNUPerson`
    * `getIdNum` of the `SNUPerson` class is called.
    
 ---
 # SNUPerson: derived class
 
+.font-15[
 ```python3
 p1 = SNUPerson('Jinwook Seo')
 p2 = Person('Se-jung Oh')
@@ -321,6 +332,7 @@ p2 = Person('Se-jung Oh')
 print('p2 < p1 =', p2 < p1)  # prints False (ordered by name)
 print('p1 < p2 =', p1 < p2)  # AttributeError: 'Person'object has no attribute 'idNum'
 ```
+]
 
 * `print('p2 < p1 =', p2 < p1)` invokes the `__lt__` method associated with `p2` (`Person` class)
    * `p2.__lt__(p1)`
@@ -336,23 +348,23 @@ print('p1 < p2 =', p1 < p2)  # AttributeError: 'Person'object has no attribute '
 # Magic Methods in Python
 
 ```
-__init __( )     for constructor
-__del__( )       for destructor
-__add__( )       for +
-__sub__( )       for -
-__mult __( )     for *
-__div__( )       for /
-__float__( )     for float function
-__str __( )      for print( )
-__repr __( )     for creating computer readable form
-__hash__( )      for making hashable objects
-__lt __( )       for <
-__le__( )        for <=
-__gt __( )       for >
-__ge __( )       for >=
-__eq __( )       for ==
-__iter __( )     for iterable object
-__next__( )      for iterable object
+__init__()      for constructor
+__del__()       for destructor
+__add__()       for +
+__sub__()       for -
+__mult__()      for *
+__div__()       for /
+__float__()     for float function
+__str__()       for print( )
+__repr__()      for creating computer readable form
+__hash__()      for making hashable objects
+__lt__()        for <
+__le__()        for <=
+__gt __()       for >
+__ge__()        for >=
+__eq__()        for ==
+__iter__()      for iterable object
+__next__()      for iterable object
 ```
 
 ---
@@ -365,6 +377,7 @@ __next__( )      for iterable object
 * `UGrad`: derived from `Student`
 * `Grad`: derived from `Student`
 
+.font-14[
 ```python3
 class Student(SNUPerson):  # intermediate class
     pass    # a class with no methods (yet)
@@ -379,10 +392,10 @@ class UGrad(Student):
 class Grad(Student):
     pass    # a class with no methods (yet)
 ```
-
+]
 ]
 .col-5[
-<img src="https://user-images.githubusercontent.com/39995503/97712500-de188c00-1b01-11eb-97df-08286faaac1c.png" width=250>
+<img src="https://user-images.githubusercontent.com/39995503/98498699-c7ed9700-228a-11eb-8616-b672d4a6d9f4.png" width=250>
 
 ]
 ]
@@ -398,19 +411,49 @@ p5 = Grad('Kiroong Choe')
 p6 = UGrad('Bumwoo Kim')
 
 print(p5, 'is a graduate student -->', type(p5) == Grad)
-# prints "Kiroong Choe is a graduate student --> True
+# prints "Kiroong Choe is a graduate student --> True"
 print(p5, 'is a undergraduate student -->', type(p5) == UGrad)
-# prints "Kiroong Choe is a undergraduate student --> False
+# prints "Kiroong Choe is a undergraduate student --> False"
 ```
 
 * `class type(object)`
    * with one argument, return the type of an object. 
    * The `isinstance()` built-in function is recommended for testing the type of an object, because it takes subclasses into account.
-* Use `isinstance()` to check an instance’s .red[type]: 
+* Use `isinstance(obj, Class)` to check an instance’s .red[type]: 
    * `isinstance(obj, int)` will be `True` only if `obj.__class__` is `int` or some class derived from `int`.  
-* Use `issubclass()` to check class `inheritance`: 
+* Use `issubclass(sub, sup)` to check class `inheritance`: 
    * `issubclass(bool, int)` is `True` since `bool` is a subclass of `int`. However, `issubclass(float, int)` is `False` since `float` is not a subclass of `int`.
-   
+
+---
+# `type`, `isinstance`, `issubclass`
+.row[
+.col-7[
+.font-15[
+```python
+class A(object): pass
+class B(A): pass
+a = A()
+b = B()
+print(type(a) == A) # True
+print(type(b) == A) # False
+print(type(a) == B) # False
+print(type(b) == B) # True
+print()
+print(isinstance(a, A)) # True
+print(isinstance(b, A)) # True (surprised?)
+print(isinstance(a, B)) # False
+print(isinstance(b, B)) # True
+print()
+print(issubclass(B, A)) # True
+print(issubclass(A, B)) # False
+```
+]
+]
+.col-5[
+<img src="https://user-images.githubusercontent.com/39995503/98459846-1561f980-21e2-11eb-8167-663aaa8a90f4.png" width=300>
+]
+]
+
 ---
 # add `isStudent(self)` method
 
@@ -452,7 +495,7 @@ class TransferStudent(Student):
 ```
 ]
 .col-5[
-<img src="https://user-images.githubusercontent.com/39995503/97800800-96b60b00-1c7b-11eb-9493-65d8ba93da06.png", width=250>
+<img src="https://user-images.githubusercontent.com/39995503/98498890-611cad80-228b-11eb-9d3c-e65df85735b9.png", width=300>
 
 
 ]
@@ -501,8 +544,623 @@ print(DividerCalculator().calculate(5, 0)) # 0 will cause an Error
 
 * We cannot replace `Calculator` object with `DividerCalculator` object
    * The inheritance violates the Substitution Principle!
+---
+# ADT Example: Vector2D
+
+.row[
+.col-8[
+.font-14[
+```python
+class Vector2D:
+    def __init__(self, a, b):
+       # overrriding object's __init__ method
+       self.x = a
+       self.y = b
+
+    def __str__(self):
+       # overriding object's __str__ method
+       return 'Vector2D object with (x=%d, y=%d)' % (self.x, self.y)
+
+    def __add__(self, other):
+       # operator overloading (+)
+       return Vector2D(self.x + other.x, self.y + other.y)
+
+v1 = Vector2D(2, 10)
+v2 = Vector2D(5, -2)
+
+print(v1)       # __str__ is called
+print(v1 + v2)  # __add__ is called
+print(issubclass(Vector2D, object)) # True
+```
+]
+]
+.col-4[
+<img src="https://user-images.githubusercontent.com/39995503/98460453-f49ca280-21e7-11eb-825b-0605b47fd4cb.png" width=100/>
+
+
+<img src="https://icon-library.com/images/2018/6207641_halftone-dots-vector-coordinates-hd-png-download.png" width="250"/>
+]
+]
+
+---
+# `__str__()` vs. `__repr__()`
+
+
+* `__str__()`is called by `str()` and `print()` to compute the .red[informal] string representation of an object
+
+* `_repr__()` is called by `repr()` to compute the .red[official] (or canonical) string representation of an object
+
+* `_repr__()` is called if `__str__()` is not defined
+
+```python3
+>>> f1 = Vector2D(1,2)
+>>> print(f1)      # __str__ is called
+Vector2D object with (x=1, y=2)
+>>> f1             # __repr__ is called (__repr__ of the object class)
+<__main__.Vector2D object at 0x7fa89613c850>
+>>> [f1]           # __repr__ is called (__repr__ of the object class)
+[<__main__.Vector2D object at 0x7fa89613c850>]
+>>> 
+```
+
+---
+# `__str__`() vs. `__repr__`()
+
+
+.font-14[
+```python
+class Vector2D:
+    def __init__(self, a, b):
+       # overrriding object's __init__ method
+       self.x = a
+       self.y = b
+
+    def __str__(self):
+       # overriding object's __str__ method
+       return 'Vector2D object with (x=%d, y=%d)' % (self.x, self.y)
+       
+    def __repr__(self):
+       # overriding object's __repr__ method
+       print('__repr__ is called')
+       return 'Vector2D(%d, %d)' % (self.x, self.y)
+
+    def __add__(self, other):
+       # operator overloading (+)
+       return Vector2D(self.x + other.x, self.y + other.y)
+
+v1 = Vector2D(2, 10)
+v2 = Vector2D(5, -2)
+print(v1)       # __str__ is called -> "Vector2D object with (x=2, y=10)"
+L = [v2]        # __repr__ is called
+print(L)        # "[Vector2D(5, -2)]"
+```
+]
+
+---
+# ADT Example: Fraction (1/4)
+
+.font-12[
+
+```python
+from math import gcd
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def toString(self):
+        return str(self.num)+"/"+str(self.den)
+    def add(self,other):
+        num1=self.num*other.den
+        num1=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def mul(self,other):
+        ...
+    def toFloat(self):
+        ...
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+        
+f1=Fraction(4,6)
+f2=Fraction(5,9)
+print(f1) # <__main__.Fractionobjectat0x1010349b0>
+print(f1.toString()) # 2/3
+print(f1.add(f2).toString()) # 11/9
+```
+]
+
+* We want to `print` `Franction` object in the same way was we print `int` or `float`
+
+---
+# ADT Example: Fraction (2/4)
+
+.font-12[
+```python
+from math import gcd
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+    def add(self,other):
+        num1=self.num*other.den
+        num1=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def mul(self,other):
+        ...
+    def toFloat(self):
+        ...
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+        
+f1=Fraction(4,6)
+f2=Fraction(5,9)
+print(f1)    #2/3 (print calls __str__()
+print(f1.add(f2))    #11/9
+print(f1.__str__())  #2/3
+```
+]
+
+* We want to add two `Fraction` objects with the operator `+`
+* We want to multiply two `Fraction` objects with the operator `*`
+
+---
+# ADT Example: Fraction (3/4)
+
+.font-12[
+```python
+from math import gcd
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+    def __add__(self,other):
+        num1=self.num*other.den
+        num1=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def __mul__(self,other):
+        num=self.num*other.num
+        den=self.den*other.den
+        return Fraction(num, den)
+    def toFloat(self):
+        ...
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+        
+f1=Fraction(4,6)
+f2=Fraction(5,9)
+f3=Fraction(3,5)
+print(f1)    # 2/3
+print(f1+f2) # 11/9 (calls __add__())
+print(f1*f3) # 2/5  (calls __mul__())
+```
+]
+
+* We want to add two `Fraction` objects with the operator `+`
+
+---
+# ADT Example: Fraction (4/4)
+
+.font-12[
+```python
+from math import gcd
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+    def __add__(self,other):
+        num1=self.num*other.den
+        num2=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def __mul__(self,other):
+         num=self.num*other.num
+         den=self.den*other.den
+         return Fraction(num, den)
+    def __float__(self):
+        return self.num/self.den
+    def __eq__(self,other):
+        return (self.num==other.num) and (self.den==other.den)        
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+        
+f1=Fraction(4,6)
+f2=Fraction(5,9)
+print(float(f1)) # 0.6666666666666666 (calls __float__())
+print(f1==f2)  # False
+```
+]
+
+
+---
+# Make a Class Hashable 
+
+.font-12[
+```python3
+from math import gcd
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+    def __add__(self,other):
+        num1=self.num*other.den
+        num2=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def __mul__(self,other):
+         num=self.num*other.num
+         den=self.den*other.den
+         return Fraction(num, den)
+    def __float__(self):
+        return self.num/self.den
+    def __eq__(self,other):
+        return (self.num==other.num) and (self.den==other.den)        
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+
+f1=Fraction(4,6)
+s=set()
+s.add(f1)  # TypeError: unhashable type: 'Fraction'
+```
+]
+
+---
+# Make a Class Hashable 
+
+* We can add `int` and `float` to a `set`, but we cannot add a `Franction` 
+   * Why? 
+   * `set.add()` calls `__hash__()`
+   * `__hash__()` of `object` class is called because `Franction` doesn't have it
+   * `Fraction` object is not hashable
    
+```python3
+   def __hash__(self, /) # __hash__() of the object class
+      return hash(self)  # TypeError: unhashable type: 'Fraction'
+```
+* We have to .red[override] `__hash__()` method inherited from `object` class
+
+---
+# Make a Class Hashable 
+
+.font-12[
+```python3
+from math import gcd
+
+class Fraction(object):
+    def __init__(self,num,den):
+        self.num=num
+        self.den=den
+        self.simplify()
+    def __str__(self):
+        return str(self.num)+"/"+str(self.den)
+    def __add__(self,other):
+        num1=self.num*other.den
+        num2=other.num*self.den
+        return Fraction(num1+num2, self.den*other.den)
+    def __mul__(self,other):
+         num=self.num*other.num
+         den=self.den*other.den
+         return Fraction(num, den)
+    def __float__(self):
+        return self.num/self.den
+    def __eq__(self,other):
+        return (self.num==other.num) and (self.den==other.den)        
+    def simplify(self):
+        gcdVal = gcd(self.num, self.den)
+        self.num, self.den = self.num//gcdVal, self.den//gcdVal
+    def getHashables(self):
+        return (self.num,self.den)  # tuple is hashable
+    def __hash__(self):  # override __hash__() of the object class
+        return hash(self.getHashables())
+```
+]
+
+---
+# Abstract Base Classes (ABCs)
+
+* Abstract base classes are classes that contain one or more .red[abstract methods].
+
+
+* An abstract method is a method that is .red[declared, but contains no implementation] 
+   * pure virtual function in C++
+ 
+ 
+* An abstract base class defines an interface for subsequent derived classes to overrride
+
+
+* Abstract base classes .red[should not be instantiated], and **.red[require] subclasses to provide implementations  for the abstract methods**.
+
+
+* Python comes with a module which provides the infrastructure for defining Abstract Base Classes (ABCs)
+
+---
+# Abstract Base Classes
+
+* When do we need an `ABC`?
+
+.center[<img src="https://user-images.githubusercontent.com/39995503/97950211-81ef8980-1dd9-11eb-95d5-a457fde81098.png" width=450/>]
+
+* It makes sense for each subclass of the `Shape` class to have its own `draw()` and `area()` methods
+* A `Shape` is just a (abstract) concept, not a real thing, it doesn't make sense to have instances of `Shape` 
+---
+# Abstract Base Class 
+
+.row[
+.col-6[
+```python3
+from abc import ABC, abstractmethod
+class Shape(ABC):
+    
+    @abstractmethod
+    def draw(self):
+        pass
+    
+    @abstractmethod
+    def area(self):
+        pass
+
+class Triangle(Shape)
+    
+    def draw(self):
+        # some actual code 
+        # to draw a triangle
+    
+    def area(self):
+        # some actual code 
+        # to calucate the area
+```
+]
+.col-6[
+<img src="https://user-images.githubusercontent.com/39995503/97951246-dfd1a080-1ddc-11eb-9e65-bb6826783ed4.png" width=400>
+
+]
+]
+
+---
+# Abstract Base Class 
+
+* A `Shape` is just a (abstract) concept, not a real thing, it doesn't make sense to have instances of `Shape`
+
+* If you try to instantiate the ABC `Shape`,
+
+.font-14[
+```python3
+Traceback (most recent call last):
+  File "/Users/jinwook/Documents/abc.py", line 22, in <module>
+    s = Shape()
+TypeError: Can't instantiate abstract class Shape with abstract methods area, draw
+```
+]
+
+* If you try to instantiate the class `Triangle` without implementing the `draw` method,
+
+.font-14[
+```python3
+Traceback (most recent call last):
+  File "/Users/jinwook/Documents/abc.py", line 19, in <module>
+    t = Triangle()
+TypeError: Can't instantiate abstract class Triangle with abstract method draw
+```
+]
+
+---
+# ABC Example
+
+Imagine we run a car dealership.
+We sell all types of vehicles, from motorcycles to trucks.
+We set ourselves apart from the competition by our prices.
+Specifically, how we determine the price of a vehicle on our lot: $5,000 x number of wheels a vehicle has.
+We love buying back our vehicles as well.
+We offer a flat rate (i.e., base sales price) - 10% of the miles driven on the vehicle.
+For trucks, that rate is $10,000. For cars, $8,000. For motorcycles, $4,000.
+
+If we wanted to create a sales system for our dealership using Object-oriented techniques,
+How would we do so?
+What would the objects be?
+We might have a Sale class, a Customer class, an Inventory class, and so forth, but
+we'd almost certainly have a `Car` , `Truck` , and `Motorcycle` class.
+What would these classes look like?
+
+
+---
+# Initial Design - Car & Truck
+
+.row[
+.col-6[
+.font-14[
+```python3
+class Car(object):
+    def __init__(self,wheels,miles,make,model,year,sold_on):
+        #Return a new Car object
+        self.wheels=wheels
+        self.miles=miles
+        self.make=make
+        self.model=model
+        self.year=year
+        self.sold_on=sold_on
+    def sale_price(self):
+        #Return the sale price for this car as a float amount
+        if self.sold_on is not None:
+             return 0.0   #Already sold
+        return 5000.0*self.wheels
+    def purchase_price(self):
+        # Return the price for which we would pay to purchase the car
+        if self.sold_on is None:
+             return 0.0  #Notyetsold
+        return 8000-(.10*self.miles) # this car was purchased in our shop
+```
+]
+]
+.col-6[
+.font-14[
+```python3
+class Truck(object):
+    def __init__(self,wheels,miles,make,model,year,sold_on):
+        #Return a new Car object
+        self.wheels=wheels
+        self.miles=miles
+        self.make=make
+        self.model=model
+        self.year=year
+        self.sold_on=sold_on
+    def sale_price(self):
+        #Return the sale price for this truck a float amount
+        if self.sold_on is not None:
+             return 0.0   #Already sold
+        return 5000.0*self.wheels
+    def purchase_price(self):
+        # Return the price for which we would pay to purchase the truck
+        if self.sold_on is None:
+             return 0.0  #Notyetsold
+        return 1000-(.10*self.miles) # this truck was purchased in our shop
+```
+]
+]
+]
+
+* They share so much data and functionality in common 
+* There must be an .red[abstraction] we can introduce here
+
+---
+# Conceptualize the Vehicle Class
+
+* A `Vehicle` is not a real-world object, 
+* but it is rather a concept that some real-world objects embody
+
+.font-14[
+```python3
+class Vehicle(object):
+    base_sale_price=0
+    def __init__(self,wheels,miles,make,model,year,sold_on):
+        self.wheels=wheels
+        self.miles=miles
+        self.make=make
+        self.model=model
+        self.year=year
+        self.sold_on=sold_on
+    def sale_price(self):
+        if self.sold_on is not None:
+            return 0.0 # Already sold
+        return 5000.0*self.wheels
+    def purchase_price(self):
+        if self.sold_on is None:
+            return 0.0 # Notyetsold
+        return self.base_sale_price-(.10*self.miles)
+```
+]
+
+
+---
+# Conceptualize the Vehicle Class
+
+* A `Vehicle` is just a concept, not a real thing, so what does it mean to say the following:
+
+```python3
+v = Vehicle(4, 0, 'Hyundai', 'Genesis', 2020, None)
+print(v.purchase_price())
+```
+
+* It should be illegal!
+  
+* `Vehicle` should really be an .red[ABC]
+
+
+
+---
+# Conceptualize the Vehicle Class
+
+.row[
+.col-7[
+.font-14[
+```python3
+from abc import ABC, abstractmethod
+class Vehicle(ABC):
+    base_sale_price=0
+    wheels=0
+    
+    def __init__(self,wheels,miles,make,model,year,sold_on):
+        self.miles=miles
+        self.make=make
+        self.model=model
+        self.year=year
+        self.sold_on=sold_on
+    def sale_price(self):
+        if self.sold_on is not None:
+            return 0.0 # Already sold
+        return 5000.0*self.wheels
+    def purchase_price(self):
+        if self.sold_on is None:
+            return 0.0 # Notyetsold
+        return self.base_sale_price-(.10*self.miles)
    
+    @abstractmethod
+    def vehicle_type(self) 
+        pass  
+        # subclass should define this method  
+```
+]
+]
+.col-5[
+
+<img src="https://user-images.githubusercontent.com/39995503/98464278-17897f80-2205-11eb-8c50-a40ecaed0110.png" width=300/>
+
+]
+]
+
+---
+# Vehicle, Car, Truck, Motorcycle
+
+.row[
+.col-7[
+.font-15[
+```python3
+car Car(Vehicle):
+   base_sale_price = 8000
+   wheels = 4
+   
+   def vehicle_type(self)
+      return 'car'
+```
+
+```python3
+car Truck(Vehicle):
+   base_sale_price = 10000
+   wheels = 4
+   
+   def vehicle_type(self)
+      return 'truck'
+```
+
+```python3
+car Motorcycle(Vehicle):
+   base_sale_price = 4000
+   wheels = 2
+   
+   def vehicle_type(self)
+      return 'motorcycle'
+```
+]
+]
+.col-5[
+
+<img src="https://user-images.githubusercontent.com/39995503/98464403-042ae400-2206-11eb-9fa9-7e574886e1b9.png" width=350/>
+]
+]
+
 ---
 # Iterators
 
@@ -510,6 +1168,7 @@ print(DividerCalculator().calculate(5, 0)) # 0 will cause an Error
 * This style of access using .red[iterators] is clear, concise, and convenient. 
 * The use of .red[iterators] pervades and unifies Python.
 
+.font-15[
 ```python3
 for element in [1, 2, 3]:
     print(element)
@@ -522,6 +1181,7 @@ for char in "123":
 for line in open("myfile.txt"):
     print(line, end='')
 ```
+]
 
 * Behind the scenes, the `for` statement calls `iter()` on the container object. 
    * The function returns an .red[iterator] object 
@@ -535,6 +1195,7 @@ for line in open("myfile.txt"):
 
 * You can call the `__next__()` method using the `next()` built-in function
 
+.font-15[
 ```python3
 >>> s = 'abc'
 >>> it = iter(s)  # returns an iterator
@@ -552,6 +1213,9 @@ Traceback (most recent call last):
     next(it)
 StopIteration
 ```
+]
+
+* You can also use iterator with other iterable objects, e.g., tuple, list, dict.
 
 ---
 # add `iterator` behavior to classes
@@ -596,22 +1260,22 @@ s
 ---
 # Example: Iterable Object
 
-```python3
+```python
 class MyCollection:
-    def__init__(self):
+    def __init__(self):
         self.size=10
         self.data=list(range(self.size))
-    def__iter__(self):
+    def __iter__(self):
         self.index=0
         return self
-    def__next__(self):
+    def __next__(self):
         if self.index>=self.size: 
             raise StopIteration
         n=self.data[self.index]
         self.index+=1
         return n
 
-coll=MyCollection()
+coll = MyCollection()
 for x in coll:
     print(x)
 ```
@@ -619,14 +1283,21 @@ for x in coll:
 ---
 # Generators
 
-* Generators are a simple and powerful tool for creating .red[iterators]. 
 * They are written like regular functions but use the `yield` statement whenever they want to return data. 
-* the `__iter__()` and `__next__()` methods are created .red[automatically]
+
+
+* Generators are a simple and powerful tool for creating .red[iterators].
+   * `__iter__()` and `__next__()` methods are created .red[automatically]
+
+
 * when generators terminate, they automatically raise `StopIteration`.
+
+
 * Each time the builtin function`next()` is called on it, the generator .red[resumes] where it left off 
    * it .red[remembers] all the data values and which statement was last executed. 
-   * the local variables and execution state are automatically saved between calls
-   
+   * the local variables and execution state are .red[automatically saved between calls].
+
+
 ```python
 def reverse(data):
     for index in range(len(data)-1, -1, -1): # stop (-1) is not included
@@ -692,7 +1363,9 @@ sum_of_first_n = sum(firstn(1000000))
 ...
 * yield 1000000 and pass it to `sum`
 
-* lazy (=on demand) generation of items
+* .red[lazy] (=on demand) generation of items
+
+* minimal memory load!
 ]
 ]
 
@@ -771,6 +1444,7 @@ for x in g:         # print the remaining 10
 >>> list(data[i] for i in range(len(data)-1, -1, -1))
 ['f', 'l', 'o', 'g']
 ```
+
 
 ---
 # Acknowledgement

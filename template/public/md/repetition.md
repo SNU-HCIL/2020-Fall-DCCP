@@ -341,11 +341,30 @@ else:
     print(x, 'is not 1.0')
 ```
 
+---
+# `for` Loop Example
+
+* A Few Words About Using Floating-point Numbers
 ```python3
-epsilon = 0.01
+epsilon = 0.001
 if abs(x - 1.0) < epsilon:
     # do something
 ```
+* .red[Chopping errors] could make devastating results
+   * Software Problem Led to System Failure at Dhahran, Saudi Arabia 
+      * https://www.gao.gov/assets/220/215614.pdf
+      * http://www-users.math.umn.edu/~arnold/disasters/patriot.html
+
+.left[
+```
+"Because of the way the Patriot computer performs its calculations and 
+the fact that its registers are only 24 bits long, 
+the conversion of time from an integer to a real number 
+cannot be any more precise than 24 bits. 
+This conversion results in a loss of precision 
+causing a less accurate time calculation."
+```
+]
 
 ---
 # Calculating a Running Total

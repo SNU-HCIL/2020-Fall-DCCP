@@ -64,7 +64,7 @@ Seoul National University
 
 
 * for .red[immutable types], operations that compute new values may actually return a reference to any existing object with the same type and value (to save memory)
-   * after `a = 1; b = 1`, `a` and `b` .red[may or may not] .purple[refer to the same object] with the value one, depending on the implementation 
+   * after `a = 1; b = 1`, `a` and `b` .red[may or may not] .purple[refer to the same object] with the value one, .red[depending on the implementation] 
    * (Note that `a = b = 1` always assigns the same object to both `a` and `b`.)
 
 .row[
@@ -854,10 +854,12 @@ print(transposed)
 >>> x = [1, 2, 3]
 >>> y = [4, 5, 6]
 >>> zipped = zip(x, y)
->>> list(zipped)
+>>> list(zipped)          # iterator 'zipped' is exhausted
 [(1, 4), (2, 5), (3, 6)]
+>>> zipped = zip(x, y)    # get the iterator again
 >>> print(*zipped)        # unpacking zipped
 (1, 4) (2, 5) (3, 6)
+>>> zipped = zip(x, y)    # get the iterator again
 >>> zzipped = zip(*zipped)
 >>> list(zzipped)
 [(1, 2, 3), (4, 5, 6)]

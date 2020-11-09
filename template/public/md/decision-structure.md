@@ -310,7 +310,7 @@ else:
 * Sometimes it may be necessary to place parentheses around an expression to clarify to what you are applying the `not` operator
 
 
-* Truth table for the not operator 
+* Truth table for the `not` operator 
 
 ```
      P        not P  

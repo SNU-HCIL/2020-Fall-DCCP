@@ -20,7 +20,7 @@ Seoul National University
 
 * Function: group of statements within  a program that perform a specific task
    * Usually one task of a large program
-   * Known as .red[divide and conquer] approach
+   * Known as .red[divide and conquer] approach (.red[decomposition])
    
    
 * .red[Modular programming]: a software design technique that emphasizes separating the functionality of a program into independent, interchangeable modules
@@ -29,8 +29,8 @@ Seoul National University
  
  
 * .red[Abstraction]: it allows the users of a function to use a piece of code as if it were a .blue[black box] 
-   * interior implementation details: we cannot see, don't need to see,  and shouldn't event want to see
-   * users of a function just have to know `assumptions` (input) and `guarantees` (output) 
+   * interior implementation details: we cannot see, don't need to see,  and shouldn't even want to see
+   * users of a function just have to know `assumptions` (about input) and `guarantees` (about output) 
 
 
 * Top-down design: technique for breaking algorithm into functions
@@ -655,8 +655,9 @@ def sum(*values, **options):
 ]
 .col-6[
 
-* `**options` expects keyword parameters with default values
-   * `parameter = value` pairs
+* `**options` expects keyword arguments 
+   * of the form `parameter = value` pairs
+   * passed as a `dictionary` to the function
 
 ```python3
 >>> sum(1, 2, 3)

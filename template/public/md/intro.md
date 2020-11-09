@@ -96,11 +96,11 @@ Seoul National University
 .row[
 .col-8[
 
-* All data in a computer is stored in sequences of 0s and 1s
-* Byte: just enough memory to store a letter or a small number
-    * Divided into eight bits
-    * Bit: electrical component that can hold positive or negative charge, like on/off switch
-    * The on/off pattern of bits in a byte represents data stored in the byte
+* All data in a computer is stored in sequences of `0`'s and `1`'s
+* `Byte`: just enough memory to store a letter or a small number
+   * Divided into .red[eight] bits
+   * `Bit`: electrical component that can hold positive or negative charge, like on/off switch
+   * The on/off pattern of bits in a byte represents data stored in the byte
     
     
 * The decimal prefixes `kilo`, `mega`, `giga`, `tera`, etc., are powers of 10<sup>3</sup> = 1000. 
@@ -118,18 +118,18 @@ https://en.wikipedia.org/wiki/Byte
 
 # Storing Numbers 
 
-* Bit (BInary digiT) represents one of the two values, 0 and 1
+* Bit (BInary digiT) represents one of the two values, `0` and `1`
 * Computers use binary numbering system
-    * Position of digit j is assigned the value 2<sup>j-1</sup>
-    * To determine value of binary integer, sum position values of the 1s
-* Byte size (8 bits) limits are 0 and 255
-    * 0 = all bits off; 255 = all bits on
-    * To store larger numbers, use several bytes
+   * Position of digit `j` is assigned the value 2<sup>`j-1`</sup>
+   * To determine value of binary integer, sum position values of the 1s
+* Byte size (8 bits) limits are `0` and `255`
+   * `0` = all bits off; `255` = all bits on
+   * To store larger numbers, use several bytes
 
 
 * To store negative integers and real numbers, computers use binary numbering and encoding schemes
-    * Negative integers encoded using two’s complement
-    * Real numbers encoded using floating-point notation (double precision in Python)
+   * Negative integers encoded using .red[two’s complement]
+   * Real numbers encoded using floating-point notation (double precision in Python)
        
 .center[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/IEEE_754_Double_Floating_Point_Format.svg/618px-IEEE_754_Double_Floating_Point_Format.svg.png" height=100>]
     
@@ -142,10 +142,10 @@ https://en.wikipedia.org/wiki/Byte
 * Sign-magnitude Representation
     
      
-* 1's Complement Representation
+* `1`'s Complement Representation
     
     
-* 2's Complement Representation
+* `2`'s Complement Representation
         
 ---
 
@@ -163,24 +163,24 @@ https://en.wikipedia.org/wiki/Byte
 
 ---
 
-# 1's Complement Representation
+# `1`'s Complement Representation
 
-* 1's complement (c) of a binary number (b): b + c = 1
+* `1`'s complement (c) of a binary number (b): b + c = 1
 
 
-* Use 1's complement to represent a negative number
+* Use `1`'s complement to represent a negative number
 
 
 * Many early computers used ones' complement notation; e.g., CDC 6600 (1965), the LINC, the PDP-1, and the UNIVAC 1107 
 
 * Positive numbers are represented in the same way as sign-magnitude representation
-* Negative numbers are represented by taking 1's complement of the unsigned positive number
+* Negative numbers are represented by taking `1`'s complement of the unsigned positive number
     * leftmost bit continues to function as a sign bit  
     <img src="https://user-images.githubusercontent.com/39995503/92318520-7afe0200-f048-11ea-8425-59d00fac8b38.png" height=100>
 
 ---
 
-# 1's Complement Representation        
+# `1`'s Complement Representation        
 
 
 ```
@@ -199,25 +199,25 @@ https://en.wikipedia.org/wiki/Byte
 
 ---
 
-# 2's Complement Representation
+# `2`'s Complement Representation
 
-* 2's complement (c) of a binary number (b): b + c = 2
-    * 2's complement: (1's complement) + 1
+* `2`'s complement (c) of a binary number (b): b + c = 2
+    * `2`'s complement: (`1`'s complement) + 1
 
 
-* Use 2's complement to represent a negative number
+* Use `2`'s complement to represent a negative number
 
 
 * Most commonly used computer representation for integers
 
 
 * Positive numbers are represented in the same way as sign-magnitude representation
-* Negative numbers are represented by taking 2's complement of the unsigned positive number
+* Negative numbers are represented by taking `2`'s complement of the unsigned positive number
     * leftmost bit continues to function as a sign bit  
     <img src="https://user-images.githubusercontent.com/39995503/92318532-8f41ff00-f048-11ea-877c-06c21eb04b7f.png" height=100>
 
 ---
-# 2's Complement Representation
+# `2`'s Complement Representation
 
 ```
           binary    decimal
@@ -299,14 +299,14 @@ source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 <img src="https://user-images.githubusercontent.com/39995503/92426721-9c382d00-f1c5-11ea-841e-055e90b8792f.png" width=500>
 
 
-* Sign bit: The sign is stored in the first bit of the word.
-* Normalized significand
-   * The first bit of the true significand is always 1 and need not be stored in the significand field. 
+* .red[Sign bit]: The sign is stored in the first bit of the word.
+* .purple[Normalized] .red[significand]
+   * The first bit of the true significand is always `1` and need not be stored in the significand field. 
    * (-1)^s x .red[1].bbb…b x 2^±E
-* Biased exponent
-   * 127 is added to the true exponent to be stored in the exponent filed. 
+* .purple[Biased] .red[exponent]
+   * `127` is added to the true exponent to be stored in the exponent filed. 
    * 0 ~ 255    ->   -127 ~ +128
-   * Exponents range from .red[−126 to +127] because exponents of −127 (all 0s) and +128 (all 1s) are reserved for special numbers
+   * Exponents range from .red[−126 to +127] because exponents of `−127` (all `0`'s) and `+128` (all `1`'s) are reserved for special numbers
 
 ---
 # Expressible (Normalized) Numbers in 32-bit Formats
@@ -318,8 +318,8 @@ source: [https://en.wikipedia.org/wiki/Single-precision_floating-point_format]
 
 .center[<img src="https://user-images.githubusercontent.com/39995503/92390825-95260600-f156-11ea-9aa8-f3ec1695bcb1.png" width=700>]
 
-* Extreme exponent values (0 and 255): used to indicate special values
-* NaN(Not a Number) is used to signal exception conditions
+* Extreme exponent values (`0` and `255`): used to indicate special values
+* `NaN`(Not a Number) is used to signal exception conditions
 
 ---
 ```
@@ -452,12 +452,12 @@ https://computersciencewiki.org/
 
 
 * Low level programming had many issues
-    * Access: learning curve was too difficult
+    * Access: too difficult to learn 
     * Mass production: not standard, cannot be generalized to every machine
     * Programming performance issue: repetitive code/operations
 
 
-* To solve these issue an abstraction was required
+* To solve these issue an `abstraction` was required
 
 ---
 
@@ -494,7 +494,7 @@ source:[https://en.wikipedia.org/wiki/X86_assembly_language]
     
 * High-Level language: allows simple creation of powerful and complex programs
     * No need to know how CPU works or write a large number of instructions
-    * More intuitive to understand
+    * More `intuitive` to understand
     
     
             C (1972)
@@ -669,17 +669,17 @@ class HelloWorld {
 # Turing Completeness
 
 * A programming language is .red[Turing complete] if it can be used to simulate a Universal Turing Machine 
-   * a hypothetical computing device with an unbounded memory (tape) on which one could write 0's and 1's, and some very premitive instructions for moving, reading, and writing to the memory.
+   * a hypothetical computing device with an unbounded memory (tape) on which one could write `0`'s and `1`'s, and some very premitive instructions for moving, reading, and writing to the memory.
    * fixed-program computer vs. .red[stored-program computer]
 
 
 * All modern programming languages are Turing complete.
-    * Anything that can be programmed in one programming language (e.g., C++) can be programmined in any other programming language (e.g., Python).
+    * Anything that can be programmed in one programming language (e.g., C++) can be programmed in any other programming language (e.g., Python).
     
     
 * If a function is .red[computable], a Turing Machine can be programmed to compute it. (Church-Turing Thesis)
-   * Turing discovered in the 1930’s that there are problems unsolvable by any algorithm -> .red[uncomputable]
-   * .red[Halting problem]: 
+   * Turing discovered in the 1930’s that there are problems .red[unsolvable] by any algorithm -> .red[uncomputable]
+   * e.g., .red[Halting problem]: 
         * Given an arbitrary algorithm and its input, will that algorithm eventually halt, or will it continue forever in an infinite loop?
 
 
@@ -690,13 +690,13 @@ class HelloWorld {
 # Programming Lanugage
 
 * Each progamming language has:
-   * primitive constrcts: literals (numbers andd strings), operators
+   * primitive constructs: literals (numbers andd strings), operators
    * .red[syntax]: defines which strings of characters and symbos are well-formed
        * syntax error: He cats loves.
    * .red[static semantics]: define which syntactically valid strings have a meaning
        * static semantics error: He run quickly.
    * .red[semantics]: associates a meaning with each syntactically correct string that has no static semantic errors
-       * If a program has no syntactic erros and no static semantic erros, it has semantics.
+       * If a program has no syntactic errors and no static semantic errors, it has semantics.
        * sematics error: He runs quickly. (But I wanted to write "She runs quickly.")
 
 ---
