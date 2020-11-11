@@ -300,8 +300,8 @@ class SNUPerson(Person):
       * <font color='purple'>instance variable</font>, `idNum` (each instance has each own)
       * <font color='purple'>instance method</font>, `getIdNum` (each instance has each own)
    * .red[override] (i.e., replace) attributes of the superclass
-      * `__init__` : invokes `Person.__init__` first to initialize the .red[inherited] instance variable `self.name`
-      * `__lt__` : overrides the `__init__` of the super class, Person
+      * `__init__` : invokes `Person.__init__` first to initialize the **inherited** instance variable `self.name`
+      * `__lt__` : overrides the `__init__` of the super class, `Person`
 ---
 # SNUPerson: derived class
 
@@ -334,15 +334,15 @@ print('p1 < p2 =', p1 < p2)  # AttributeError: 'Person'object has no attribute '
 ```
 ]
 
+* the .red[first] argument of the expression is used to determine which `__lt__` method to invoke
+
+
 * `print('p2 < p1 =', p2 < p1)` invokes the `__lt__` method associated with `p2` (`Person` class)
    * `p2.__lt__(p1)`
    
    
 * `print('p1 < p2 =', p1 < p2)` invokes the `__lt__` method associated with `p1` (`SNUPerson` class)
    * `p1.__lt__(p2)`
-
-
-* the .red[first] argument of the expression is used to determine which `__lt__` method to invoke
 
 ---
 # Magic Methods in Python
@@ -352,7 +352,7 @@ __init__()      for constructor
 __del__()       for destructor
 __add__()       for +
 __sub__()       for -
-__mult__()      for *
+__mul__()       for *
 __div__()       for /
 __float__()     for float function
 __str__()       for print( )
@@ -457,25 +457,48 @@ print(issubclass(A, B)) # False
 ---
 # add `isStudent(self)` method
 
-* where to add it: `Student` or `SNUPerson`?
+* `type` vs. `isinstance`
+* `isinstance()` built-in function is recommended for testing the type of an object, because it takes subclasses into account.
 
-* add to the `Student` class?
+.row[
+.col-6[
 
+* if we use `type` function,
+
+.font-14[
 ```python3
 def isStudent(self):
-    return type(self) == Grad or type(Self) == UGrad
+    return type(self) == Grad or \
+           type(self) == UGrad
 ```
-* what happens if a new type of students (e.g., `TransferStudent`) were introduced later
+]
+]
+.col-6[
 
+* if we use `isinstance` function,
 
-* add to the `SNUPerson` class?
-
+.font-14[
 ```python3
 def isStudent(self):
     return isinstance(self, Student)
 ```
+]
+]
+]
 
-* The `isinstance()` built-in function is recommended for testing the type of an object, because it takes subclasses into account.
+* what happens if a new type of students (e.g., `TransferStudent`) were added later?
+   * we have to change the definition of the `isStudent` function with `type`
+   * but we don't have to change the definition with `isinstance`   
+   
+
+* we can use `isinstance` function with the help of the `Student` class,
+   * the utility of the intermediate class, `Student`
+   * without the `Student` class, the code using `isinstance` doesn't work
+
+
+* better to add the `isStudent` method to `SNUPerson` than to `Student`
+   * can call it with any `SNUPerson` instances other than `Student` instances
+
 
 
 
@@ -543,7 +566,12 @@ print(DividerCalculator().calculate(5, 0)) # 0 will cause an Error
 ```
 
 * We cannot replace `Calculator` object with `DividerCalculator` object
-   * The inheritance violates the Substitution Principle!
+   * The inheritance violates the Liskov Substitution Principle!
+
+<p style="font-size:12px">
+https://www.pythonforeveryone.com/articles/liskov-substitution-principle-python.html
+</p>
+
 ---
 # ADT Example: Vector2D
 
@@ -586,11 +614,11 @@ print(issubclass(Vector2D, object)) # True
 # `__str__()` vs. `__repr__()`
 
 
-* `__str__()`is called by `str()` and `print()` to compute the .red[informal] string representation of an object
+* `__str__()` is called by `str()` and `print()` to compute the .red[informal] string representation of an object
 
-* `_repr__()` is called by `repr()` to compute the .red[official] (or canonical) string representation of an object
+* `__repr__()` is called by `repr()` to compute the .red[official] (or canonical) string representation of an object
 
-* `_repr__()` is called if `__str__()` is not defined
+* `__repr__()` is called if `__str__()` is not defined
 
 ```python3
 >>> f1 = Vector2D(1,2)
@@ -652,7 +680,7 @@ class Fraction(object):
         return str(self.num)+"/"+str(self.den)
     def add(self,other):
         num1=self.num*other.den
-        num1=other.num*self.den
+        num2=other.num*self.den
         return Fraction(num1+num2, self.den*other.den)
     def mul(self,other):
         ...
@@ -687,7 +715,7 @@ class Fraction(object):
         return str(self.num)+"/"+str(self.den)
     def add(self,other):
         num1=self.num*other.den
-        num1=other.num*self.den
+        num2=other.num*self.den
         return Fraction(num1+num2, self.den*other.den)
     def mul(self,other):
         ...
@@ -723,7 +751,7 @@ class Fraction(object):
         return str(self.num)+"/"+str(self.den)
     def __add__(self,other):
         num1=self.num*other.den
-        num1=other.num*self.den
+        num2=other.num*self.den
         return Fraction(num1+num2, self.den*other.den)
     def __mul__(self,other):
         num=self.num*other.num
@@ -1000,7 +1028,7 @@ class Car(object):
     def purchase_price(self):
         # Return the price for which we would pay to purchase the car
         if self.sold_on is None:
-             return 0.0  #Notyetsold
+             return 0.0  #Not yet sold
         return 8000-(.10*self.miles) # this car was purchased in our shop
 ```
 ]
@@ -1020,12 +1048,12 @@ class Truck(object):
     def sale_price(self):
         #Return the sale price for this truck a float amount
         if self.sold_on is not None:
-             return 0.0   #Already sold
+             return 0.0   # Already sold
         return 5000.0*self.wheels
     def purchase_price(self):
         # Return the price for which we would pay to purchase the truck
         if self.sold_on is None:
-             return 0.0  #Notyetsold
+             return 0.0  # Not yet sold
         return 1000-(.10*self.miles) # this truck was purchased in our shop
 ```
 ]
@@ -1220,7 +1248,7 @@ StopIteration
 ---
 # add `iterator` behavior to classes
 
-* Define an `__iter__()` method which returns an object with a `__next__()` method. 
+* Define an `__iter__()` method which returns an object that has a `__next__()` method. 
 * If the class defines `__next__()`, then `__iter__()` can just return `self`:
 
 .row[
