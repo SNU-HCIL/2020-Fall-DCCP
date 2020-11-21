@@ -10,9 +10,9 @@
 #### Installation
 
 ```bash
-git clone https://github.com/SNU-HCIL/interactive-keynote.git
+git clone https://github.com/SNU-HCIL/2020-Fall-DCCP.git
 
-cd interactive-keynote/template
+cd 2020-Fall-DCCP/template
 npm i
 npm run dev
 ```
