@@ -375,7 +375,7 @@ def factorial(n, result=1):
         return result
     else:
         #  return factorial(n-1, n*result)
-        acc = n * result
+        result = n * result
         n = n - 1
         goto START
 
@@ -402,7 +402,7 @@ def factorial(n, result=1):
         return result
     else: 
         # return factorial(n-1, n*result)
-        acc = n * result
+        result = n * result
         n = n - 1
         goto START
 
