@@ -28,7 +28,7 @@ Seoul National University
 
 
 * Matrices are usually symbolized using upper-case letters (such as A in the examples above)
-   * while the corresponding lower-case letters, with two subscript indices (e.g., a11, or a1,1), represent the entries.
+   * while the corresponding lower-case letters, with two subscript indices (e.g., `a`<sub>11</sub>, or `a`<sub>1,1</sub>), represent the entries.
 ---
 # Matrix
 
@@ -284,9 +284,6 @@ print(a)             # STILL prints [[42, 0], [42, 0], [42, 0]]
 # deepcopy preserves any already-existing aliases perfectly!
 # best answer: don't create aliases in the first place, unless you want them.
 ```
-
-https://www.cs.cmu.edu/~112/notes/notes-2d-lists.html
-
 ]
 .col-6.font-14[
 
@@ -329,8 +326,8 @@ def sumMatrix(m):
    return sum
 
 matrix = [ [ 1, 2, 3, 4 ],
-          [ 5, 6, 7, 8 ],
-          [ 9, 10, 11, 12 ]]
+           [ 5, 6, 7, 8 ],
+           [ 9, 10, 11, 12 ]]
 
 print(sumMatrix(matrix))
 
@@ -342,7 +339,7 @@ print(sum([elem for row in matrix for elem in row]))
 # Vector Operations in Python
 
 * add 2D vectors 
-  * [u1, v1] + [u2, v2] = [u1 + u2, v1 + v2]
+  * [u<sub>1</sub>, v<sub>1</sub>] + [u<sub>2</sub>, v<sub>2</sub>] = [u<sub>1</sub> + u<sub>2</sub>, v<sub>1</sub> + v<sub>2</sub>]
 
 ```python3
 # resV = x + y + z
@@ -421,20 +418,20 @@ result:
 
 * Scalar multiplication  
 
-α (x + y) = α x + α y
+α x
 
----
-# Vector Operations in Python
-
-* Scalar multiplication  
-
+.font-15[
 ```python
 x = [1,2,3]
 alpha = 3
 resV = [alpha * val for val in x]
 print(resV)
 ```
+]
 
+α (x + y) = α x + α y
+
+.font-15[
 ```python
 x = [1, 2, 3]
 y = [4, 5, 6]
@@ -444,6 +441,7 @@ print([e for e in zip(x, y)])
 resV = [alpha * sum(e) for e in zip(x, y)]
 print(resV)
 ```
+]
 
 ---
 # Matrix Operations in Python
@@ -485,7 +483,8 @@ matrixB = [[1,2,3], [3,4,5]]
 print([pair[0] == pair[1] for rows in zip(matrixA, matrixB) for pair in zip(*rows)])
 print(all([pair[0] == pair[1] for rows in zip(matrixA, matrixB) for pair in zip(*rows)]))
 
-matrix_b = [[1,2,5], [7,4,5]]
+matrixA = [[1,2,3], [3,4,5]]
+matrixB = [[1,2,5], [7,4,5]]
 print([pair[0] == pair[1] for rows in zip(matrixA, matrixB) for pair in zip(*rows)])
 print(all([pair[0] == pair[1] for rows in zip(matrixA, matrixB) for pair in zip(*rows)]))
 ```
@@ -495,7 +494,7 @@ print(all([pair[0] == pair[1] for rows in zip(matrixA, matrixB) for pair in zip(
 # `all(iterable)` and `any(iterable)`
 
 * `all(iterable)`
-   * Return True if all elements of the iterable are true (or if the iterable is empty). 
+   * Return `True` if .red[all] elements of the iterable are true (or if the iterable is empty). 
 
 ```python3
 def all(iterable):
@@ -506,7 +505,7 @@ def all(iterable):
 ```
 
 * `any(iterable)`
-   * Return True if any element of the iterable is true. If the iterable is empty, return False. 
+   * Return `True` if .red[any] element of the iterable is true. If the iterable is empty, return `False`. 
 
 ```python3
 def any(iterable):
@@ -559,7 +558,7 @@ print(resM)
 2. for each column vector in matrixB (`for colB in zip(*matrixB)`)
 3. for each pair of elements at the same index from the two vectors   
    (`for a,b in zip(rowA, colB)`)
-4. get the summation (`sum(a*b `)
+4. get the summation (`sum(a*b ... `)
 
 ---
 # `numnpy` package
