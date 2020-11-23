@@ -52,7 +52,7 @@
   4. move them into desired space by direct manipulating DOM at afterUpdate
 -->
 {#each $codeBlockInfos as block }
-  <div bind:this={block.ref}>
+  <div bind:this={block.ref} style="display: flex; justify-content: flex-end;">
     <PythonToolbar code={block.code} />
   </div>
 {/each}
