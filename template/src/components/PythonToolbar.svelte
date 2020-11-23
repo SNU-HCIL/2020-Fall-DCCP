@@ -61,6 +61,7 @@
   .toolbar button {
     margin-top: 10px;
     margin-left: 10px;
+    font-size: 12px;
     font-family: "Quattrocento Sans";
   }
 
