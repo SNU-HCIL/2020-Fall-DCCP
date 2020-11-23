@@ -338,26 +338,26 @@ echofilter(input, output, delay=0.7, atten=4)
 # Popular Python Packages
 
 * DB Binding Libraries
-   * PyMySQL module
-   * MySQLdb module
-   * SQLAlchemy module
+   * PyMySQL package
+   * MySQLdb package
+   * SQLAlchemy package
 
 
 * Scientific Libraries
-   * SciPy module
+   * SciPy package
     
 
 * Web Development Libraries
-   * Django module
-   * Flask module
+   * Django package
+   * Flask package
 
 
 * Machine Learning Libraries
-   * NumPy module
-   * Pandas module
-   * Matplotlib module
-   * SKLearn Module
-   * NLTK module
+   * NumPy package
+   * Pandas package
+   * Matplotlib package
+   * SKLearn package
+   * NLTK package
 
 ---
 # Acknowledgement

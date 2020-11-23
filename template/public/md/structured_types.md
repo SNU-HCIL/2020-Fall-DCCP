@@ -68,7 +68,7 @@ Seoul National University
    * (Note that `a = b = 1` always assigns the same object to both `a` and `b`.)
 
 .row[
-.col-6[
+.col-6.font-15[
    ```python3
    >>> a = 1
    >>> b = 1
@@ -83,7 +83,7 @@ Seoul National University
    True
    ```
 ]
-.col-6[
+.col-6.font-15[
 ```python3
 >>> word="string"  
 >>> word1="string"
@@ -255,6 +255,7 @@ P/y/t/h/o/n/
    * an omitted .red[first index] defaults to `zero`, 
    * an omitted .red[second index] defaults to the `size of the string` being sliced
 
+.font-15[
 ```python3
 >>> word = 'Python'
 >>> word[0:2]  # characters from position 0 (included) to 2 (excluded)
@@ -272,6 +273,8 @@ P/y/t/h/o/n/
 >>> word[-2:]  # characters from the second-last (included) to the end
 'on'
 ```
+]
+
 ---
 # Slicing
 
@@ -342,6 +345,7 @@ TypeError: 'str' object does not support item assignment
 
 * Literals of type `tuple`
 
+.font-15[
 ```python3
 >>> t1 = ()  # empty tuple
 >>> t2 = (1, 'two', 3.0)
@@ -357,6 +361,7 @@ TypeError: 'str' object does not support item assignment
 >>> print(t4)
 (1,)
 ```
+]
 
 ---
 # Repetition, Concatenation, Indexing, and Slicing
@@ -506,7 +511,7 @@ False
 * All slice operations return a .red[new list] containing the requested elements 
    * note: slice .blue[on the left side of assignment] mutates the original list
 
-
+.font-15[
 ```python3
 >>> squares = [1, 4, 9, 16, 25]
 >>> nSq = squares[-3:]  # slicing returns a new list
@@ -527,6 +532,8 @@ True
 [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 ```
+]
+
 ---
 # Nested Lists
 
@@ -557,7 +564,7 @@ True
 >>> lists[0].append(3)
 >>> lists
 [[3], [3], [3]]
->>> list[1].append(4)
+>>> lists[1].append(4)
 >>> lists
 [[3, 4], [3, 4], [3, 4]]
 ```
@@ -566,6 +573,31 @@ True
 <img src="https://user-images.githubusercontent.com/39995503/94368360-9aa3ba00-011e-11eb-868a-468e1479e013.png" width=370>
 ]
 ]
+
+---
+# Shallow Copy of a List
+
+* `Repetition` returns a .red[shallow copy] of the list:
+
+.row[
+.col-5[
+```python3
+>>> lists = [1] * 3  
+>>> lists
+[1, 1, 1]
+>>> lists[0] = 3
+>>> lists
+[3, 1, 1]
+>>> lists[1]=4
+>>> lists
+[3, 4, 1]
+```
+]
+.col-7[
+<img src="https://user-images.githubusercontent.com/39995503/99904200-c7ceac00-2d0c-11eb-870e-251fa7d18396.png" width=370>
+]
+]
+
 
 ---
 # Shallow Copy of a List
@@ -600,6 +632,7 @@ True
    * note: slice .red[on the right side] returns a new list
 * The original list is .red[mutated]
 
+.font-15[
 ```python3
 >>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 >>> letters
@@ -617,6 +650,7 @@ True
 >>> letters
 []
 ```
+]
 
 ---
 # Lists and Mutability
@@ -872,6 +906,7 @@ True
 ---
 # Transpose a matrix with unpack and `zip`
 
+.font-15[
 ```python3
 >>> print(*matrix)
 [1, 2, 3, 4] [5, 6, 7, 8] [9, 10, 11, 12]
@@ -891,6 +926,8 @@ True
 >>> b
 [[5, 6, 7, 8] [9, 10, 11, 12]]
 ```
+]
+
 ---
 # Transpose a matrix with unpack and `zip`
 
@@ -917,6 +954,7 @@ True
    * an individual function operates on functions.
    * using functions as arguments of other functions
 
+.font-15[
 ```python
 def apply2Each(L, f): # defining a high-order function
    """Assumes L is a list, f a function
@@ -930,6 +968,7 @@ print('L = ', L)   # prints L = [1, 2, 3.33]
 apply2Each(L, int)
 print('L = ', L)   # prints L = [1, 2, 3]
 ```
+]
 
 ---
 # Built-in Higher-order Functions
@@ -937,6 +976,8 @@ print('L = ', L)   # prints L = [1, 2, 3]
 `map(function, iterable, ...)`
    * applies `function` to every item of iterable, returning a sequence (iterator)
 
+.font-15[
+   
 ```python
 squares = list(map(lambda x: x**2, range(10)))
 print(squares)
@@ -954,6 +995,7 @@ for i in map(lambda x, y: x**y, [1, 2, 3, 4], [3, 2, 1, 0]):
    L.append(i)
 print(L)
 ```
+]
 
 ---
 # Built-in Higher-order Functions
@@ -1224,6 +1266,7 @@ monthNumbers['May'] = 'V' # update an entry
 ---
 # Dictionary Operations
 
+.font-15[
 ```python3
 >>> tel = {'jack': 4098, 'sape': 4139}
 >>> tel['guido'] = 4127
@@ -1244,11 +1287,12 @@ True
 >>> 'jack' not in tel
 False
 ```
+]
 
 ---
 # Arbitrary Argument Lists
 
-
+.font-15[
 ```python3
 def sum(*values, **options):
     """values: passed as a tuple
@@ -1270,6 +1314,8 @@ result = sum(1, 2, 3, neg = True, explain = True)
 # prints {'neg': True, 'explain': True}
 print(result) # prints 'The answer is -6'
 ```
+]
+
 ---
 # Looping Techniques
 
