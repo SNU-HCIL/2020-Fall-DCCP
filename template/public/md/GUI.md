@@ -608,7 +608,7 @@ root.mainloop()
 ```
 ]
 
---- 
+---
 # `tkinter` Widgets
 
 * The `tkinter.ttk` module provides access to the .red[Tk themed widget set], introduced in Tk 8.5.
@@ -627,6 +627,7 @@ root.mainloop()
 from tkinter import *
 from tkinter.ttk import *
 ```
+
 * That code causes several `tkinter.ttk` widgets to automatically replace the `Tk` widgets.
 
 ---
