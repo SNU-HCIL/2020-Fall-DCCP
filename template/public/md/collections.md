@@ -309,7 +309,7 @@ print(schedule)
 
 
 ---
-# `defulatdict`
+# `defaultdict`
 
 * a dictionary that always provides a .red[default value] (even when a key is not in the dictionary)
    * note: `KeyError` raised when a key is not there in a regular `dict` object
@@ -347,7 +347,7 @@ for k, v in s:
 
 result = sorted(d.items())
 print(result)
-# [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+# [('blue', [2, 4, 4]), ('red', [1]), ('yellow', [1, 3])]
 ```
 ]
 

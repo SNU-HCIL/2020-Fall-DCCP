@@ -364,7 +364,7 @@ passwd = ttk.Entry(parent, textvariable=password, show="*")
 ---
 # Entry - input validation
 
-*  if you'd like to restrict what a user can type into the entry, you can do so with .red[validation]. 
+*  To restrict what a user can type into the entry, you use .red[validation]. 
 
 .font-15[
 ```python3
@@ -379,6 +379,10 @@ e = ttk.Entry(root, textvariable=num, validate='key', validatecommand=check_num_
 e.grid(column=0, row=0, sticky='we')
 ```
 ]
+
+* `validate` option: specifies when the callback function will be called for validation. 
+   * The .red['key'] value -> validation occurs whenever any .red[keystroke] changes the widget’s contents.
+
 
 * The `register` method (which can be called on any widget, not just root) creates a .red[Tcl procedure] which will call our Python function. 
    * The percent substitutions (e.g., `%P`) we've chosen will be passed to it as parameters. (`%P`: The value of the entry)
@@ -400,7 +404,7 @@ country.state(["readonly"]) # restrict users to making choices only from the lis
 ```
 ]
 
-* A combobox will generate a <<ComboboxSelected>> virtual event that you can bind to whenever its value changes. 
+* A combobox will generate a `<<ComboboxSelected>>` virtual event that you can bind to whenever its value changes. 
 
 .font-15[
 ```python3
@@ -433,7 +437,7 @@ selIndex = country.current() # return a 0-based index of the selected value
 
 * `pack` receives an argument to specify positioning
    * Positioning depends on the order in which widgets were added to the window
-   * Valid arguments: `side='top'`, `side='left'`, `side='right'`
+   * Valid arguments: `side='top'`, `side='bottom'`, `side='left'`, `side='right'`
 
 ---
 # pack - Example
@@ -614,13 +618,14 @@ root.mainloop()
 * The `tkinter.ttk` module provides access to the .red[Tk themed widget set], introduced in Tk 8.5.
 
 
-* Using the Ttk widgets gives the application an improved look and feel.
+* Using the `Ttk` widgets gives the application an improved look and feel.
 
 
-* Ttk comes with 18 widgets, 
-   * twelve of which already existed in `tkinter`: `Button`, `Checkbutton`, `Entry`, `Frame`, `Label`, `LabelFrame`, `Menubutton`, `PanedWindow`, `Radiobutton`, `Scale`, `Scrollbar`, and `Spinbox`. 
-   * The other six are new: `Combobox`, `Notebook`, `Progressbar`, `Separator`, `Sizegrip` and `Treeview`. 
-   * All them are subclasses of `Widget`.
+* `Ttk` comes with 18 widgets (all of them are subclasses of `Widget`), 
+   * twelve of which already existed in `tkinter`: 
+      * `Button`, `Checkbutton`, `Entry`, `Frame`, `Label`, `LabelFrame`, `Menubutton`, `PanedWindow`, `Radiobutton`, `Scale`, `Scrollbar`, and `Spinbox`. 
+   * The other six are new: 
+      * `Combobox`, `Notebook`, `Progressbar`, `Separator`, `Sizegrip` and `Treeview`. 
 
 
 ```python3
@@ -628,7 +633,7 @@ from tkinter import *
 from tkinter.ttk import *
 ```
 
-* That code causes several `tkinter.ttk` widgets to automatically replace the `Tk` widgets.
+* This `import` code causes several `tkinter.ttk` widgets to automatically replace the `Tk` widgets.
 
 ---
 # `tkinter` Widgets
