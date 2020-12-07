@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --single",
+    "start": "sirv public --single --host 0.0.0.0 --port 8010",
     "validate": "svelte-check"
   },
   "devDependencies": {
